@@ -240,6 +240,9 @@ h1 .thin{font-weight:400;color:var(--muted)}
   border-radius:4px;width:26px;height:22px;display:grid;place-items:center;flex:0 0 auto}
 .lv.on{background:var(--sa-blue-lo);font-weight:700}
 .lv.on .k{background:var(--sa-blue)}
+.dial.alarm{width:298px;padding:10px 12px}
+.dial.alarm h5,.dial.alarm .lv{display:none}
+.dial.alarm .shield{margin-top:0;font-size:16px;padding:12px 12px}
 .shield{margin-top:9px;padding:9px 9px;border-radius:7px;background:#E9F6EF;display:flex;gap:9px;
   align-items:center;font-size:14px;font-weight:700;color:#0B5C3C;border:2px solid #BFE3D2}
 .shield.hot{background:#FCE9E7;color:#8E1D12;border-color:#F0B9B2}
@@ -276,7 +279,7 @@ h1 .thin{font-weight:400;color:var(--muted)}
   font-weight:700;display:grid;place-items:center;letter-spacing:.02em}
 
 /* full-stop shield screen */
-.blockpanel{position:absolute;left:44px;top:196px;width:706px;background:#fff;
+.blockpanel{position:absolute;left:44px;top:248px;width:706px;background:#fff;
   border-radius:16px;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.7)}
 .blockpanel .bar{background:var(--sa-red);color:#fff;padding:16px 30px;display:flex;align-items:center;gap:14px;
   font-size:20px;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
@@ -619,6 +622,7 @@ footer a{color:var(--fg)}
       E.readout.style.display='block';E.readout.style.left='816px';E.readout.style.top='232px';
       E.vTxt.innerHTML='Powiedz <em>„co tu pisze"</em> — przeczytam i wytłumaczę zwykłymi słowami.';},
     shield:function(){screenEl.dataset.win='web pop dl';setLevel(1);
+      E.dial.style.bottom='auto';E.dial.style.top='22px';E.dial.classList.add('alarm');
       E.fill.setAttribute('opacity','.72');E.block.style.display='block';
       E.shield.className='shield hot';E.shield.textContent='🛡 Tarcza: zatrzymałem zagrożenie';
       E.vTxt.innerHTML='<em>Zatrzymaj się.</em> To nie jest wiadomość od Microsoftu. Nie dzwoń pod ten numer.';},
@@ -639,7 +643,7 @@ footer a{color:var(--fg)}
       E.acts.className='acts stack';
       E.acts.innerHTML='<button class="b danger">✋ Zatrzymaj teraz</button><button class="b sec">Zwolnij tempo</button><button class="b sec">Pokaż mi to</button>';
       document.getElementById('cHint').innerHTML='⏱ Odliczam 3 sekundy przed każdym kliknięciem, żebyś zdążył zareagować.';
-      requestAnimationFrame(function(){place(E.card, r);});
+      E.card.style.left='520px';E.card.style.top='300px';
       E.vTxt.innerHTML='Dołączam zdjęcie. Powiedz <em>„stop"</em>, żeby mnie zatrzymać.';},
     levels:function(){screenEl.dataset.win='mail';setLevel(2);
       E.fill.setAttribute('opacity','.62');
@@ -688,7 +692,7 @@ footer a{color:var(--fg)}
     document.getElementById('nEvi').innerHTML=n.e.map(function(x){
       return '<div><span class="lab">'+x[0]+'</span>'+(x[2]?'<a href="'+x[2]+'" target="_blank" rel="noopener">'+x[1]+'</a>':x[1])+'</div>';}).join('');}
 
-  function go(k){cur=k;reset();E.card.style.width='520px';E.ring.style.borderColor='';E.acts.className='acts';
+  function go(k){cur=k;reset();E.dial.style.top='auto';E.dial.style.bottom='150px';E.dial.classList.remove('alarm');E.card.style.width='520px';E.ring.style.borderColor='';E.acts.className='acts';
     document.getElementById('cHint').innerHTML='🔊 Czytam Ci to na głos. Powiedz „powtórz", jeśli chcesz usłyszeć jeszcze raz.';
     E.shield.textContent='🛡 Tarcza: włączona zawsze';
     SC[k]();notes(k);

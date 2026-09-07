@@ -1,0 +1,1018 @@
+<!-- ============ 1 · TYTUŁ ============ -->
+<section class="slide dark on" data-sec="SeniorAI">
+  <div class="kick"><b>Koncepcja produktu</b><span>Wersja 0.1</span><span>Wrzesień 2026</span><span class="rule"></span><span>Materiał wewnętrzny</span></div>
+  <div class="body vcenter">
+    <h1>Asystent,<br>który pokazuje<br>palcem.</h1>
+    <p class="lead" style="margin-top:34px;max-width:44ch">Nakładka na Windows dla osób starszych: prowadzi krok po kroku
+    po ekranie, który już mają, i zatrzymuje to, co ma ich okraść.</p>
+  </div>
+  <div style="display:flex;gap:56px;align-items:flex-end;margin-top:auto;padding-top:26px;border-top:1px solid #2A3948">
+    <div><div class="kick" style="margin:0 0 6px">Problem</div><p style="font-size:20px;margin:0;color:#DDE3E9">Prawie 10 mln Polaków 60+. Przy komputerze nikt nie siedzi obok.</p></div>
+    <div><div class="kick" style="margin:0 0 6px">Rozwiązanie</div><p style="font-size:20px;margin:0;color:#DDE3E9">Pięć poziomów pomocy plus tarcza, która nie wyłącza się nigdy.</p></div>
+    <div><div class="kick" style="margin:0 0 6px">Status</div><p style="font-size:20px;margin:0;color:#DDE3E9">Makieta i research. Przed pierwszą linijką kodu.</p></div>
+  </div>
+</section>
+
+<!-- ============ 2 · SCENA ============ -->
+<section class="slide" data-sec="Problem">
+  <div class="kick"><b>01</b><span>Problem</span><span class="rule"></span><span>Sytuacja wyjściowa</span></div>
+  <div class="cols c2a">
+    <div>
+      <h2>Halina, 74 lata, chce wysłać wnuczce zdjęcie z ogrodu.</h2>
+      <p>Ma laptopa od czterech lat. Umie odebrać pocztę. Nie umie dołączyć załącznika — bo za każdym
+      razem okno wygląda trochę inaczej, a spinacz raz jest tu, raz tam.</p>
+      <p>Dzwoni do córki. Córka jest w pracy. Mówi przez telefon: <em>„kliknij w tę ikonkę obok"</em>.
+      Halina nie wie, którą ikonkę. Po dwudziestu minutach obie się poddają.</p>
+      <p><strong>Za tydzień na ekranie wyskakuje czerwone okno z numerem telefonu i napisem
+      „Twój komputer jest zarażony".</strong> Tym razem po drugiej stronie ktoś odbierze od razu,
+      będzie cierpliwy i powie dokładnie, co kliknąć.</p>
+    </div>
+    <div class="stack">
+      <div class="box sig">
+        <h4>Czego Halina nie potrzebuje</h4>
+        <p>Nowego komputera. Kursu komputerowego. Kogoś, kto zrobi to za nią, kiedy ona patrzy w drugą stronę.</p>
+      </div>
+      <div class="box amber">
+        <h4>Czego potrzebuje</h4>
+        <p>Kogoś, kto o 10:42 pokaże palcem <em>to</em> miejsce na <em>jej</em> ekranie — i kto będzie
+        na miejscu również wtedy, gdy zadzwoni oszust.</p>
+      </div>
+      <p class="small" style="margin:0">Halina jest postacią złożoną z danych z kolejnych slajdów, nie z konkretnego wywiadu.
+      Badania formatywne z polskimi seniorami to pierwsza pozycja w roadmapie.</p>
+    </div>
+  </div>
+  <div class="src"><span>Scenariusz ilustracyjny — dane źródłowe na slajdach 3–5</span></div>
+</section>
+
+<!-- ============ 3 · SKALA ============ -->
+<section class="slide" data-sec="Problem">
+  <div class="kick"><b>02</b><span>Problem</span><span class="rule"></span><span>Skala</span></div>
+  <h2>Grupa docelowa rośnie szybciej niż jakakolwiek inna — i najszybciej w Polsce.</h2>
+  <div class="figs c4" style="grid-auto-flow:unset;grid-template-columns:repeat(4,1fr)">
+    <div class="fig"><div class="v">9,97<span style="font-size:34px"> mln</span></div>
+      <div class="l">osób 60+ w Polsce — <b>26,6%</b> ludności kraju. Co czwarty mieszkaniec.</div></div>
+    <div class="fig"><div class="v">21,6<span style="font-size:34px">%</span></div>
+      <div class="l">ludności Unii Europejskiej ma 65 lat lub więcej — 449,3 mln mieszkańców, stan na 1.01.2024.</div></div>
+    <div class="fig"><div class="v">61,2<span style="font-size:34px"> mln</span></div>
+      <div class="l">Amerykanów 65+ (18,0% populacji). W latach 2020–2024 ta grupa urosła o 13%, a populacja w wieku produkcyjnym o 1,4%.</div></div>
+    <div class="fig sig"><div class="v">11,9<span style="font-size:34px"> mln</span></div>
+      <div class="l">Polaków 60+ w 2060 r. wg oficjalnej prognozy GUS — ok. 37–40% ludności kraju.</div></div>
+  </div>
+  <p style="margin-top:30px;max-width:78ch"><strong>To nie jest nisza, tylko kierunek, w którym idzie cała demografia.</strong>
+  Rynek nie wymaga edukowania: rośnie sam, a każdy kolejny rocznik wchodzący w wiek 65+ ma za sobą
+  więcej lat pracy z komputerem — czyli wyższe oczekiwania wobec własnej samodzielności.</p>
+  <div class="src">
+    <span>GUS/KPRM, „Informacja o sytuacji osób starszych w Polsce za 2024" (analiza pełnego tekstu)</span>
+    <span>GUS, Prognoza ludności rezydującej 2023–2060</span>
+    <span>Eurostat, Population structure and ageing (01.01.2024)</span>
+    <span>US Census Bureau, Vintage 2024</span>
+  </div>
+</section>
+
+<!-- ============ 4 · NIE BRAK DOSTĘPU ============ -->
+<section class="slide" data-sec="Problem">
+  <div class="kick"><b>03</b><span>Problem</span><span class="rule"></span><span>Właściwa diagnoza</span></div>
+  <div class="cols c2b">
+    <div>
+      <h2 style="font-size:50px">Problemem nie jest brak dostępu. Problemem jest brak pewności.</h2>
+      <p>Seniorzy są już online. Wykluczenie cyfrowe w klasycznym rozumieniu — „nie mają internetu" —
+      przestało być główną barierą.</p>
+      <p>Barierą jest to, co dzieje się <em>po</em> zalogowaniu: niepewność, która sprawia, że komputera
+      używa się krótko, ostrożnie i tylko do rzeczy dobrze znanych.</p>
+      <div class="box stop" style="margin-top:8px">
+        <h4 style="color:var(--stop)">Trzy liczby, które definiują polski rynek</h4>
+        <p><strong>12,3%</strong> Polaków 65–74 ma podstawowe umiejętności cyfrowe — najniższy wynik
+        ze wszystkich grup wiekowych (25–34 lata: 75,7%).</p>
+        <p style="margin-top:8px"><strong>26,5%</strong> Polaków 60–74 nigdy nie korzystało z internetu,
+        przy 8,5% w całej populacji 16–74.</p>
+        <p style="margin-top:8px"><strong>3,8 mln</strong> osób wykluczonych cyfrowo w Polsce wg NIK —
+        cztery piąte z nich to osoby w wieku 55–74.</p>
+      </div>
+    </div>
+    <div>
+      <div class="pts">
+        <div class="pt"><span class="n">90%</span><div><h3>korzysta z internetu</h3>
+          <p>Wśród Amerykanów 65+. Dostęp jest — problem leży gdzie indziej.</p></div></div>
+        <div class="pt"><span class="n">78%</span><div><h3>ma smartfon</h3>
+          <p>Najniższy odsetek ze wszystkich grup wiekowych, ale wciąż większość.</p></div></div>
+        <div class="pt"><span class="n">14%</span><div><h3>korzysta „niemal cały czas"</h3>
+          <p>Wśród osób 18–29 lat: <strong>63%</strong>. Najniższy wynik ze wszystkich grup wiekowych —
+          najlepszy dostępny wskaźnik zastępczy dla <em>dyskomfortu</em>, nie braku dostępu.</p></div></div>
+        <div class="pt" style="border-top-width:3px;border-top-color:var(--stop)"><span class="n" style="color:var(--stop)">73%</span>
+          <div><h3>potrzebuje kogoś przy konfiguracji nowego urządzenia</h3>
+          <p>48% zdecydowanie, 25% częściowo. To jest dokładny opis luki, którą wypełnia SeniorAI —
+          i jedyna liczba tu, która pochodzi z badania sprzed niemal dekady, bo nowszej nie znaleziono.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="src">
+    <span>Pew Research Center, badanie 02–06.2025, publ. 08.01.2026 (90% / 78% / 14%)</span>
+    <span>Pew Research Center, badanie 2016, publ. 17.05.2017 (73%)</span>
+    <span>GUS, „Społeczeństwo informacyjne w Polsce 2025" · NIK, „Wykluczeni w cyfrowym państwie"</span>
+  </div>
+</section>
+
+<!-- ============ 5 · KOSZT POMYŁKI ============ -->
+<section class="slide dark dense" data-sec="Problem">
+  <div class="kick"><b>04</b><span>Problem</span><span class="rule"></span><span>Koszt jednego złego kliknięcia</span></div>
+  <h2 style="color:var(--on-ink);font-size:46px;margin-bottom:16px;max-width:34ch">Ten sam mechanizm, który służy do pomagania seniorom, jest dziś głównym narzędziem okradania ich.</h2>
+  <div class="figs" style="border-top-color:#3A4B5C">
+    <div class="fig stop"><div class="v">7,7<span style="font-size:30px"> mld $</span></div>
+      <div class="l">strat Amerykanów 60+ ze zgłoszonych oszustw internetowych w 2025 r. — 201 266 zgłoszeń, najwyższe straty ze wszystkich grup wiekowych.</div></div>
+    <div class="fig stop"><div class="v">1,04<span style="font-size:30px"> mld $</span></div>
+      <div class="l">strat osób 60+ w kategorii „wsparcie techniczne / obsługa klienta" w 2025 r. — <b>48,8%</b> wszystkich strat tej kategorii.</div></div>
+    <div class="fig amber"><div class="v">38,5<span style="font-size:30px"> tys. $</span></div>
+      <div class="l">średnia strata na jedno zgłoszenie wśród ofiar 60+ w USA (2025). Nie incydent — mediana problemu.</div></div>
+    <div class="fig amber"><div class="v">21 960</div>
+      <div class="l">oszustw wobec osób 60+ zarejestrowanych w Polsce w 2024 r. — na 68 177 wszystkich przestępstw wobec seniorów.</div></div>
+  </div>
+  <div class="cols c2" style="margin-top:16px;gap:36px">
+    <div>
+      <h4 style="color:var(--on-ink-sig)">Wzorzec ataku jest zawsze ten sam</h4>
+      <p style="font-size:18.5px">Wyskakujące okno udające system → numer telefonu → cierpliwy „konsultant" →
+      prośba o zainstalowanie AnyDesk, TeamViewer lub Quick Assist → pełna kontrola nad komputerem. W badaniu
+      Microsoftu <strong>17%</strong> osób, które podjęły interakcję z oszustem, oddało mu zdalny dostęp.</p>
+    </div>
+    <div>
+      <h4 style="color:var(--on-ink-sig)">Producenci narzędzi mówią to wprost</h4>
+      <p style="font-size:18.5px">TeamViewer: <em>„nie świadczymy wsparcia zdalnego — jeśli ktoś każe Ci
+      zainstalować TeamViewer, to niemal na pewno oszustwo"</em>. RustDesk usunięto ze sklepu Google Play
+      z powodu skali nadużyć; Dr.Web wskazuje go jako najczęstsze narzędzie oszustów podszywających się pod bank.</p>
+    </div>
+  </div>
+  <div class="src">
+    <span>FBI IC3, 2025 Internet Crime Report (odczyt pełnego tekstu PDF)</span>
+    <span>MSWiA/GUS 2025 — przestępstwa wobec osób 60+ w Polsce</span>
+    <span>Microsoft, Global Tech Support Scam Research 2021</span>
+    <span>teamviewer.com · rustdesk.com/blog · news.drweb.com</span>
+  </div>
+</section>
+
+<!-- ============ 6 · DLACZEGO POMOC ZAWODZI ============ -->
+<section class="slide" data-sec="Problem">
+  <div class="kick"><b>05</b><span>Problem</span><span class="rule"></span><span>Dlaczego dzisiejsza pomoc nie działa</span></div>
+  <h2>Trzy sposoby, w jakie senior dostaje dziś pomoc. Każdy zawodzi w innym miejscu.</h2>
+  <div class="cols c3" style="gap:34px">
+    <div class="stack">
+      <h3>Człowiek przez telefon</h3>
+      <p class="small" style="font-size:19px">Córka, wnuk, sąsiad. Badania nazywają ich <em>warm experts</em>
+      i pokazują, że seniorzy preferują ich nad każdą automatyczną pomoc. <strong>73%</strong> Amerykanów 65+
+      potrzebuje takiej osoby przy konfiguracji nowego urządzenia.</p>
+      <div class="box stop"><p><strong>Zawodzi na dostępności.</strong> Nie ma go o 10:42 we wtorek.
+      A instrukcja „kliknij tę ikonkę obok" przez telefon wymaga, żeby obie strony widziały ten sam ekran — nie widzą.</p></div>
+    </div>
+    <div class="stack">
+      <h3>Wbudowana dostępność Windows</h3>
+      <p class="small" style="font-size:19px">Lupa, Narrator, Dostęp głosowy, SmartScreen, Copilot Vision.
+      Darmowe, dopracowane, stale ulepszane. Realny konkurent.</p>
+      <div class="box stop"><p><strong>Zawodzi na złożeniu.</strong> Lupa powiększa. Narrator czyta.
+      Dostęp głosowy wykonuje komendy. Żadna z nich nie <em>prowadzi przez zadanie</em> ani nie ocenia,
+      czy kolejny krok jest bezpieczny. Copilot Vision odpowiada na pytania o ekran, ale wymaga
+      subskrypcji Microsoft 365 i nie klika.</p></div>
+    </div>
+    <div class="stack">
+      <h3>Zdalny pulpit</h3>
+      <p class="small" style="font-size:19px">TeamViewer, AnyDesk, Quick Assist, Chrome Remote Desktop.
+      Standard branżowy pomocy technicznej.</p>
+      <div class="box stop"><p><strong>Zawodzi na bezpieczeństwie i na nauce.</strong> To dokładnie ten sam
+      mechanizm, którym okrada się seniorów. A nawet użyty uczciwie — uczy tylko tego, że komputer
+      naprawia ktoś inny, kiedy senior patrzy.</p></div>
+    </div>
+  </div>
+  <div class="src">
+    <span>Hunsaker i wsp., 2019 (warm experts)</span>
+    <span>support.microsoft.com — Magnifier, Narrator, Voice Access, Copilot Vision</span>
+    <span>Sekcja 4 raportu konkurencyjnego</span>
+  </div>
+</section>
+
+<!-- ============ 7 · DIVIDER PRODUKT ============ -->
+<section class="slide dark divider" data-sec="Produkt">
+  <div class="kick"><b>Część I</b><span class="rule"></span></div>
+  <div class="body vcenter">
+    <div class="num">I</div>
+    <h1>Produkt</h1>
+    <p class="sub">Pięć poziomów obecności, jedna tarcza, która nigdy się nie wyłącza —
+    i zasada, że palec należy do użytkownika.</p>
+  </div>
+</section>
+
+<!-- ============ 8 · TEZA ============ -->
+<section class="slide" data-sec="Produkt">
+  <div class="kick"><b>06</b><span>Produkt</span><span class="rule"></span><span>Teza</span></div>
+  <div class="cols c2b">
+    <div>
+      <h2 style="font-size:52px">Nie upraszczamy komputera. Uczymy się razem z użytkownikiem tego, który już ma.</h2>
+      <p>Dwie dekady prób pokazały, że zamknięta powłoka z wielkimi przyciskami nie skaluje się:
+      Eldy — lider kategorii — zebrał ok. 400 tys. użytkowników od 2006 r. przy dziesiątkach milionów
+      seniorów online. Bo problem nie polega na tym, że Windows jest za trudny, tylko na tym,
+      że w krytycznym momencie nikogo przy nim nie ma.</p>
+      <p>SeniorAI nie zastępuje interfejsu. Kładzie się na nim: podświetla, tłumaczy, powiększa,
+      ostrzega — i schodzi z drogi, kiedy nie jest potrzebny.</p>
+    </div>
+    <div class="stack" style="justify-content:center">
+      <div class="qv">„Po lewej stronie, na samej górze, jest niebieski przycisk <u>Nowa wiadomość</u>.
+      Obrysowałem go na niebiesko."</div>
+      <p class="small" style="margin:0">Tak brzmi cały produkt w jednym zdaniu. Nie „zrobię to za Ciebie".
+      Nie „kliknij tutaj". Konkretne miejsce, konkretny kolor, konkretny przycisk — i palec, który zostaje
+      w ręce użytkownika.</p>
+      <div class="box safe"><h4 style="color:var(--safe)">Trzy reguły, które wiążą cały produkt</h4>
+      <p><strong>1.</strong> Domyślnie milczy. <strong>2.</strong> Klika użytkownik, chyba że wyraźnie
+      poprosi inaczej. <strong>3.</strong> Tarcza jest jedyną rzeczą, która włącza się sama.</p></div>
+    </div>
+  </div>
+  <div class="src"><span>Eldy — eldy.eu/about-us (ok. 400 tys. użytkowników od 2006)</span><span>Pew Research 2025 — 90% Amerykanów 65+ online</span></div>
+</section>
+
+<!-- ============ 9 · POZIOMY ============ -->
+<section class="slide" data-sec="Produkt">
+  <div class="kick"><b>07</b><span>Produkt</span><span class="rule"></span><span>Model asysty</span></div>
+  <h2 style="font-size:40px;margin-bottom:12px">Wielopoziomowość nie jest funkcją. Jest odpowiedzią na to, że „senior" to nie jedna osoba.</h2>
+  <div class="ladder tight">
+    <div class="rung"><span class="k">0</span><strong>Czekam w gotowości</strong><span>Nic nie robi. Nie ma go na ekranie. Budzi się na „pomóż mi" albo Ctrl+spacja. To ustawienie fabryczne.</span></div>
+    <div class="rung a"><span class="k">1</span><strong>Podpowiadam i czytam</strong><span>Lupa, czytanie na głos, tłumaczenie prawniczego drobnego druku na zwykły polski. Nic nie klika.</span></div>
+    <div class="rung a"><span class="k">2</span><strong>Prowadzę krok po kroku</strong><span>Podświetla jeden element naraz i mówi, co zrobić. Klika użytkownik. Tryb, który uczy.</span></div>
+    <div class="rung"><span class="k">3</span><strong>Klikam po Twojej zgodzie</strong><span>Asystent wykonuje pojedynczy krok po wyraźnym „tak". Dla rzeczy, których użytkownik fizycznie nie da rady zrobić.</span></div>
+    <div class="rung"><span class="k">4</span><strong>Robię to za Ciebie</strong><span>Całe zadanie, z widocznym kursorem, dziennikiem kroków i zatrzymaniem przed każdą akcją nieodwracalną.</span></div>
+  </div>
+  <div class="cols c2a" style="gap:26px;flex:0 0 auto;margin-top:14px">
+    <div class="shieldrow" style="margin-top:0"><span class="k">🛡</span>
+      <p><strong>Tarcza nie jest poziomem — jest osią prostopadłą.</strong> Działa na każdym poziomie, także na zerowym,
+      i jako jedyny element produktu uruchamia się bez pytania. Wszystko inne czeka na zaproszenie.</p></div>
+    <p class="small" style="margin:0;font-size:17.5px">Poziom zmienia użytkownik — głosem, jednym przyciskiem
+    albo zdalnie osoba bliska w aplikacji na telefonie. Wsparcie techniczne dla seniora świadczy zwykle rodzina,
+    więc konfiguracja musi dać się przenieść tam, gdzie ta rodzina realnie jest.</p>
+  </div>
+  <div class="src"><span>Zgodne z rekomendacją #20 dossier: tryb „zapytaj przed wykonaniem" jako domyślny, pełna automatyzacja tylko po świadomej zgodzie</span></div>
+</section>
+
+<!-- ============ 10 · WARSTWA: PROWADZENIE ============ -->
+<section class="slide" data-sec="Produkt · Warstwy">
+  <div class="kick"><b>08</b><span>Poziom 2</span><span class="rule"></span><span>Prowadzenie krok po kroku</span></div>
+  <div class="cols c2b" style="gap:38px">
+    <div>
+      <h2 style="font-size:44px">Przyciemnij wszystko oprócz jednego miejsca.</h2>
+      <p class="small" style="font-size:20px">Ekran gaśnie poza celem. Obrys w kolorze nakazu. Instrukcja
+      stoi <em>przy</em> przycisku, nie w rogu ekranu. Jeden krok, jedno zdanie, jedno kliknięcie.</p>
+      <div class="pts" style="margin-top:14px">
+        <div class="pt"><span class="n">↓</span><div><h3 style="font-size:21px">Klika użytkownik</h3>
+          <p style="font-size:18px">Aplikacja pod spodem to prawdziwa poczta, nie nasza atrapa. Następnym razem Halina zrobi to sama.</p></div></div>
+        <div class="pt"><span class="n">↓</span><div><h3 style="font-size:21px">Karta nigdy nie zasłania celu</h3>
+          <p style="font-size:18px">Pozycja przeliczana przy każdym kroku — wymóg WCAG 2.2 SC 2.4.11.</p></div></div>
+        <div class="pt"><span class="n">↓</span><div><h3 style="font-size:21px">Głos mówi mniej niż ekran pisze</h3>
+          <p style="font-size:18px">Skrót, nie transkrypcja. Zasada redundancji Mayera — patrz „Trzy sprzeczności".</p></div></div>
+      </div>
+    </div>
+    <div class="shotwrap"><img class="shot" src="{{IMG:guide}}" alt="Nakładka podświetla przycisk Nowa wiadomość i wyświetla instrukcję kroku 1 z 4"></div>
+  </div>
+  <div class="src"><span>Mayer, teoria uczenia multimedialnego (zasada sygnalizacji)</span><span>Chandler i Sweller 1992 — split-attention effect</span><span>W3C WCAG 2.2 SC 2.4.11</span></div>
+</section>
+
+<!-- ============ 11 · WARSTWA: LUPA ============ -->
+<section class="slide" data-sec="Produkt · Warstwy">
+  <div class="kick"><b>09</b><span>Poziom 1</span><span class="rule"></span><span>Lupa, która też tłumaczy</span></div>
+  <div class="cols c2b" style="gap:38px">
+    <div>
+      <h2 style="font-size:44px">Powiększenie bez zrozumienia to za mało.</h2>
+      <p class="small" style="font-size:20px">Drobny druk w oknach zgód niesie decyzje o skutkach finansowych.
+      Lupa pokazuje litery. Panel obok mówi, co one znaczą — jednym zdaniem, zwykłym językiem.</p>
+      <div class="box amber" style="margin-top:14px">
+        <h4 style="color:var(--amber)">Świadomy kompromis</h4>
+        <p>Duże powiększenie odbiera kontekst — to fizyczna właściwość ograniczonego ekranu, nie błąd
+        implementacji. Dlatego lupa jest punktowa i ograniczona do 2–3×, z widocznym otoczeniem,
+        zamiast pełnoekranowego zoomu bez punktu odniesienia.</p>
+      </div>
+      <p class="small" style="font-size:19px;margin-top:14px">Technicznie: systemowe Magnification API,
+      nie skalowanie zrzutu — obraz zostaje ostry.</p>
+    </div>
+    <div class="shotwrap"><img class="shot" src="{{IMG:magnify}}" alt="Lupa powiększa drobny druk, panel obok tłumaczy jego treść prostym językiem"></div>
+  </div>
+  <div class="src"><span>Badania nad utratą kontekstu przy zoomie (ARVO/TVST; CHI 2024)</span><span>learn.microsoft.com — Magnification API</span></div>
+</section>
+
+<!-- ============ 12 · WARSTWA: TARCZA ============ -->
+<section class="slide" data-sec="Produkt · Warstwy">
+  <div class="kick"><b>10</b><span style="color:var(--stop)">Zawsze włączona</span><span class="rule"></span><span>Tarcza</span></div>
+  <div class="cols c2b" style="gap:38px">
+    <div>
+      <h2 style="font-size:44px">Jedyny moment, w którym produkt odbiera decyzję.</h2>
+      <p class="small" style="font-size:20px">Asystent, który tylko doradza, jest bezużyteczny dokładnie wtedy,
+      gdy oszust przez telefon mówi „proszę kliknąć tutaj". Tarcza przerywa, nazywa rzecz po imieniu
+      i daje dwa wyjścia: bezpieczne zamknięcie albo telefon do bliskiej osoby.</p>
+      <div class="box stop" style="margin-top:14px">
+        <h4 style="color:var(--stop)">Alarmem jest zbieg zdarzeń, nie jedna reguła</h4>
+        <p>Strona podszywająca się pod system <em>plus</em> pobrany program do zdalnego sterowania
+        <em>plus</em> wyświetlony numer telefonu. Każdy sygnał osobno bywa niegroźny.</p>
+      </div>
+      <p class="small" style="font-size:19px;margin-top:14px"><strong>Uczciwie:</strong> blokada zawsze podaje trzy powody
+      i zawsze da się przejść. Blokada bez uzasadnienia uczy nieufności do narzędzia, nie do oszusta —
+      a fałszywy alarm przy legalnym przelewie kosztuje dokładnie to zaufanie, które budujemy.</p>
+    </div>
+    <div class="shotwrap"><img class="shot" src="{{IMG:shield}}" alt="Tarcza zatrzymuje fałszywe okno alarmu Windows i wyjaśnia trzy powody decyzji"></div>
+  </div>
+  <div class="src"><span>Kod barw wg ISO 3864-1 (czerwony = zakaz, niebieski = nakaz działania, zielony = stan bezpieczny)</span><span>FBI IC3 2024 · Microsoft Security Blog 2024</span></div>
+</section>
+
+<!-- ============ 13 · WARSTWA: PRZEJĘCIE ============ -->
+<section class="slide" data-sec="Produkt · Warstwy">
+  <div class="kick"><b>11</b><span>Poziom 4</span><span class="rule"></span><span>Przejęcie kontroli</span></div>
+  <div class="cols c2b" style="gap:38px">
+    <div>
+      <h2 style="font-size:44px">Jeśli asystent klika, musi klikać na widoku.</h2>
+      <p class="small" style="font-size:20px">To moment największego ryzyka dla zaufania — bo z zewnątrz
+      wygląda dokładnie jak schemat oszustwa z części I. Dlatego nic nie dzieje się w tle.</p>
+      <div class="pts">
+        <div class="pt"><span class="n">01</span><div><h3 style="font-size:21px">Widoczny kursor asystenta</h3><p style="font-size:18px">W kolorze ostrzegawczym, odliczający trzy sekundy przed każdym kliknięciem.</p></div></div>
+        <div class="pt"><span class="n">02</span><div><h3 style="font-size:21px">Dziennik kroków na ekranie</h3><p style="font-size:18px">Co zrobione, co robi się teraz, co będzie dalej. Bez zwijania.</p></div></div>
+        <div class="pt"><span class="n">03</span><div><h3 style="font-size:21px">Stop przed każdą nieodwracalnością</h3><p style="font-size:18px">Wysłanie, płatność, usunięcie — zawsze wraca do użytkownika.</p></div></div>
+        <div class="pt"><span class="n">04</span><div><h3 style="font-size:21px">Nigdy nie inicjuje tego ktoś z zewnątrz</h3><p style="font-size:18px">Sesji nie da się rozpocząć telefonem ani linkiem. To granica projektowa, nie ustawienie.</p></div></div>
+      </div>
+    </div>
+    <div class="shotwrap"><img class="shot" src="{{IMG:handover}}" alt="Asystent wykonuje krok za użytkownika, pokazując kursor, dziennik działań i przycisk STOP"></div>
+  </div>
+  <div class="src"><span>Klikanie przez wzorce UI Automation (Invoke), nie przez symulację ruchu myszy</span><span>Dossier #20 — algorithmic reliance a poczucie autonomii</span></div>
+</section>
+
+<!-- ============ 14 · POZIOMY + OPIEKUN ============ -->
+<section class="slide" data-sec="Produkt · Warstwy">
+  <div class="kick"><b>12</b><span>Sterowanie</span><span class="rule"></span><span>Suwak i osoba bliska</span></div>
+  <div class="cols c2b" style="gap:38px">
+    <div>
+      <h2 style="font-size:44px">Ten sam człowiek potrzebuje różnej pomocy w poniedziałek i w środę.</h2>
+      <p class="small" style="font-size:20px">Kompetencja cyfrowa nie jest cechą stałą — rośnie z wprawą,
+      spada po chorobie, zmienia się w ciągu dnia. Produkt zaprojektowany pod „przeciętnego seniora"
+      zawodzi jednocześnie u sprawniejszych (czują się infantylizowani) i u mniej sprawnych.</p>
+      <div class="box sig" style="margin-top:14px">
+        <h4>Druga aplikacja: opiekun</h4>
+        <p>Córka na telefonie widzi poziom, może go zmienić, dostaje powiadomienie po zdarzeniu Tarczy
+        i może oddzwonić. <strong>Nie widzi ekranu rodzica</strong> — dostaje zdarzenie, nie podgląd.
+        Rozróżnienie, od którego zależy, czy produkt jest wsparciem, czy nadzorem.</p>
+      </div>
+    </div>
+    <div class="shotwrap"><img class="shot" src="{{IMG:levels}}" alt="Panel wyboru poziomu pomocy od 0 do 4 z zawsze włączoną tarczą"></div>
+  </div>
+  <div class="src"><span>Fisk i wsp., Designing for Older Adults — zróżnicowanie wewnątrz grupy</span><span>Mannheim i wsp. 2023 — digital ageism w 71% analizowanych badań i produktów</span></div>
+</section>
+
+<!-- ============ 15 · DIVIDER PROJEKT ============ -->
+<section class="slide dark divider" data-sec="Projekt">
+  <div class="kick"><b>Część II</b><span class="rule"></span></div>
+  <div class="body vcenter">
+    <div class="num">II</div>
+    <h1>Dlaczego to<br>tak wygląda</h1>
+    <p class="sub">Każda liczba w interfejsie — rozmiar przycisku, kontrast, długość zdania —
+    wynika z opublikowanego badania albo z normy. Nie z gustu.</p>
+  </div>
+</section>
+
+<!-- ============ 16 · EVIDENCE → DECISION ============ -->
+<section class="slide" data-sec="Projekt">
+  <div class="kick"><b>13</b><span>Projekt</span><span class="rule"></span><span>Od dowodu do decyzji</span></div>
+  <h2 style="font-size:40px;margin-bottom:8px">Dwanaście z dwudziestu par „wniosek badawczy → decyzja projektowa".</h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:44%">Wniosek badawczy</th><th style="width:38%">Decyzja w interfejsie</th><th style="width:18%">Źródło</th></tr></thead>
+    <tbody>
+      <tr><td>Minimalny cel klikalny 24×24 px (AA); 44×44 px na poziomie AAA</td><td class="name">Przyciski nakładki mają 60 px wysokości — 2,5× ponad minimum</td><td class="mono">WCAG 2.2 SC 2.5.8 / 2.5.5</td></tr>
+      <tr><td>Czułość kontrastowa spada do ~83% wartości młodzieńczej w wieku 80 lat</td><td class="name">Kontrast 4,5:1 wszędzie, 7:1 dla komunikatów Tarczy</td><td class="mono">WCAG 1.4.3 / 1.4.6; WAI-AGE</td></tr>
+      <tr><td>Żółknięcie soczewki utrudnia rozróżnianie barw niebiesko-żółto-zielonych</td><td class="name">Stan nigdy nie jest kodowany samym kolorem — zawsze kolor + kształt + słowo</td><td class="mono">NIH „The Aging Eye"; NIA/NLM 2001</td></tr>
+      <tr><td>Błędy skupiają się w zadaniach złożonych: podwójne kliknięcie, przeciąganie</td><td class="name">Cała nakładka działa na pojedyncze kliknięcie. Nigdzie double-click</td><td class="mono">Smith, Sharit i Czaja 1999</td></tr>
+      <tr><td>Użyteczne pole widzenia (UFOV) zawęża się z wiekiem</td><td class="name">Jeden podświetlony element naraz. Nigdy dwie wskazówki jednocześnie</td><td class="mono">Ball i Owsley</td></tr>
+      <tr><td>Prezbyakuzja: 23% osób 65–75 lat, 40% osób 75+</td><td class="name">Każda wypowiedź głosowa ma równoległy tekst na ekranie</td><td class="mono">StatPearls / NIH; WHO</td></tr>
+      <tr><td>Zasada modalności: mowa + obraz uczy lepiej niż mowa + obraz + ten sam tekst</td><td class="name">Głos mówi skrót, ekran pokazuje wskazanie — nie transkrypcję</td><td class="mono">Mayer 2009/2021</td></tr>
+      <tr><td>Split-attention effect: rozdzielenie opisu i obiektu zwiększa obciążenie</td><td class="name">Karta instrukcji zawsze przy podświetlonym elemencie, nie w panelu bocznym</td><td class="mono">Chandler i Sweller 1992</td></tr>
+      <tr><td>Fokus nie może być zasłonięty przez własne UI</td><td class="name">Karta przelicza pozycję przy każdym kroku, żeby nie przykryć celu</td><td class="mono">WCAG 2.2 SC 2.4.11</td></tr>
+      <tr><td>43,4% seniorów deklaruje lęk przed uszkodzeniem urządzenia</td><td class="name">Stale widoczne „Cofnij"; komunikat „nic nieodwracalnego się nie stanie" przy starcie</td><td class="mono">Marquine Raymundo i da Silva Santana 2014</td></tr>
+      <tr><td>Self-efficacy silniej niż wiek przewiduje korzystanie z technologii</td><td class="name">Każde ukończone zadanie kończy się jawnym „zrobiłeś to poprawnie", nie samym przejściem dalej</td><td class="mono">Czaja i wsp. 2006 (CREATE)</td></tr>
+      <tr><td>Seniorzy preferują pomoc ludzką („warm experts") nad automatyczną</td><td class="name">Przycisk „zadzwoń do bliskiej osoby" obecny w każdym panelu, także w alarmie</td><td class="mono">Hunsaker i wsp. 2019</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="src"><span>Pełna tabela 20 pozycji: research/02-gerontech-hci-evidence.md</span><span>59 pozycji bibliografii z DOI/URL</span></div>
+</section>
+
+<!-- ============ 17 · NAPIĘCIA ============ -->
+<section class="slide" data-sec="Projekt">
+  <div class="kick"><b>14</b><span>Projekt</span><span class="rule"></span><span>Trzy sprzeczności, których nie da się „rozwiązać"</span></div>
+  <h2 style="font-size:46px">Dobre wytyczne czasem się wykluczają. Wtedy trzeba wybrać i powiedzieć dlaczego.</h2>
+  <div class="cols c3" style="gap:32px">
+    <div class="stack">
+      <h4>Napięcie 1</h4>
+      <h3>Napisy kontra redundancja</h3>
+      <p class="small" style="font-size:19px">Ubytek słuchu wymaga, żeby każdą wypowiedź dublować tekstem.
+      Zasada redundancji Mayera mówi, że identyczny tekst obok narracji <em>pogarsza</em> uczenie się.</p>
+      <div class="box sig"><p><strong>Wybór:</strong> tekst na ekranie jest krótszym, innym zdaniem
+      niż narracja — nie transkrypcją. Pasek głosu pokazuje skrót, karta pokazuje pełne polecenie.</p></div>
+    </div>
+    <div class="stack">
+      <h4>Napięcie 2</h4>
+      <h3>Bezpieczeństwo kontra autonomia</h3>
+      <p class="small" style="font-size:19px">Blokada chroni przed stratą 83 tys. dolarów. Literatura
+      gerontologiczna wiąże paternalistyczną ochronę z niższym poczuciem sprawczości i gorszymi wynikami zdrowotnymi.</p>
+      <div class="box sig"><p><strong>Wybór:</strong> Tarcza przerywa, ale nigdy nie zamyka drogi.
+      Zawsze podaje trzy powody i zawsze pozwala przejść dalej świadomie. Blokada, której nie da się
+      przejść, zamienia asystenta w strażnika.</p></div>
+    </div>
+    <div class="stack">
+      <h4>Napięcie 3</h4>
+      <h3>Uczyć kontra wyręczać</h3>
+      <p class="small" style="font-size:19px">Metaanaliza obejmująca 411 430 osób wiąże <em>aktywne</em>
+      korzystanie z technologii cyfrowej z istotnie niższym ryzykiem pogorszenia funkcji poznawczych.
+      Asystent, który robi wszystko za użytkownika, może tę korzyść odbierać.</p>
+      <div class="box sig"><p><strong>Wybór:</strong> poziomy 1–2 są domyślne, poziom 4 wymaga świadomego
+      włączenia i nie jest stanem docelowym. Sukcesem produktu jest schodzenie w dół skali, nie w górę.</p></div>
+    </div>
+  </div>
+  <div class="src"><span>Mayer 2009/2021 · WHO / StatPearls</span><span>Gerontologist 2025 — Safety–Autonomy Grid</span><span>Metaanaliza N=411 430 (dossier, sekcja 7.3)</span></div>
+</section>
+
+<!-- ============ 18 · DIVIDER TECHNOLOGIA ============ -->
+<section class="slide dark divider" data-sec="Technologia">
+  <div class="kick"><b>Część III</b><span class="rule"></span></div>
+  <div class="body vcenter">
+    <div class="num">III</div>
+    <h1>Jak to<br>zbudować</h1>
+    <p class="sub">Architektura, koszt jednej interakcji i lista rzeczy, których Windows
+    po prostu nie pozwoli zrobić — niezależnie od tego, ile w to włożymy.</p>
+  </div>
+</section>
+
+<!-- ============ 19 · ARCHITEKTURA ============ -->
+<section class="slide" data-sec="Technologia">
+  <div class="kick"><b>15</b><span>Technologia</span><span class="rule"></span><span>Architektura</span></div>
+  <h2 style="font-size:42px;margin-bottom:6px">Wszystko, co da się rozstrzygnąć lokalnie, zostaje na komputerze.</h2>
+  <p class="small" style="font-size:20px;margin-bottom:14px;max-width:104ch">Do chmury trafia zrzut ekranu tylko wtedy,
+  gdy użytkownik o coś poprosi albo gdy lokalny klasyfikator zobaczy sygnał ryzyka. Nie ma trybu ciągłego streamowania ekranu.
+  <strong>Model wizyjny musi jednak działać w chmurze:</strong> lokalna inferencja wymaga sprzętu klasy Copilot+ PC (NPU ≥40 TOPS, 16 GB RAM),
+  a zakładamy stary laptop z i3 i 8 GB. To ograniczenie sprzętowe, nie preferencja architektoniczna.</p>
+  <div style="flex:1;min-height:0;display:flex;align-items:center">
+  <svg viewBox="0 0 1432 372" width="100%" style="max-height:100%" role="img" aria-label="Diagram architektury: warstwa czujników, rozumienia, decyzji i działania">
+    <defs>
+      <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+        <path d="M0 0.6 L8 4.5 L0 8.4 z" fill="#5A6672"/></marker>
+    </defs>
+    <rect x="576" y="8" width="576" height="356" rx="7" fill="none" stroke="#B9C4CF" stroke-width="1.5" stroke-dasharray="7 5"/>
+    <text x="864" y="27" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12.5" letter-spacing="2.6" fill="#7A8794">GRANICA PRYWATNOŚCI</text>
+
+    <g font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2.4" fill="#0B5FCC">
+      <text x="12" y="60">CO WIDZI</text><text x="300" y="60">CO ROZUMIE</text>
+      <text x="588" y="60">CO DECYDUJE</text><text x="876" y="60">CO ROBI</text><text x="1164" y="60">KTO WIE</text>
+    </g>
+
+    <g>
+      <rect x="8" y="74" width="264" height="256" rx="6" fill="#FFFFFF" stroke="#D7D3C7"/>
+      <text x="28" y="106" font-family="Archivo, sans-serif" font-size="20" font-weight="700" fill="#0E1822">Czujniki</text>
+      <g font-family="Source Serif 4, serif" font-size="16.5" fill="#59646F">
+        <text x="28" y="140">Drzewo UI Automation</text><text x="28" y="162" font-size="14" fill="#8A94A0">nazwy i pozycje kontrolek</text>
+        <text x="28" y="196">Windows.Graphics.Capture</text><text x="28" y="218" font-size="14" fill="#8A94A0">klatka ekranu na żądanie</text>
+        <text x="28" y="252">Zdarzenia systemowe</text><text x="28" y="274" font-size="14" fill="#8A94A0">nowy proces, pobrany plik, adres URL</text>
+      </g>
+      <text x="28" y="312" font-family="IBM Plex Mono, monospace" font-size="12" fill="#0F7A50">■ lokalnie, zawsze</text>
+    </g>
+
+    <g>
+      <rect x="296" y="74" width="264" height="256" rx="6" fill="#FFFFFF" stroke="#D7D3C7"/>
+      <text x="316" y="106" font-family="Archivo, sans-serif" font-size="20" font-weight="700" fill="#0E1822">Dwa tory</text>
+      <rect x="316" y="122" width="224" height="86" rx="5" fill="#E6F3EC" stroke="#BCDECD"/>
+      <text x="330" y="146" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#0F6B47">Klasyfikator ryzyka</text>
+      <text x="330" y="168" font-family="Source Serif 4, serif" font-size="14.5" fill="#3D6455">mały model na urządzeniu,</text>
+      <text x="330" y="187" font-family="Source Serif 4, serif" font-size="14.5" fill="#3D6455">reguły + heurystyki zbiegu zdarzeń</text>
+      <rect x="316" y="220" width="224" height="86" rx="5" fill="#E5EEFD" stroke="#B9D2F7"/>
+      <text x="330" y="244" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#0B5FCC">Model wizyjny (VLM)</text>
+      <text x="330" y="266" font-family="Source Serif 4, serif" font-size="14.5" fill="#2C4A73">rozumie nieznany ekran,</text>
+      <text x="330" y="285" font-family="Source Serif 4, serif" font-size="14.5" fill="#2C4A73">wywoływany tylko na żądanie</text>
+    </g>
+
+    <g>
+      <rect x="584" y="74" width="264" height="256" rx="6" fill="#FFFFFF" stroke="#D7D3C7"/>
+      <text x="604" y="106" font-family="Archivo, sans-serif" font-size="20" font-weight="700" fill="#0E1822">Orkiestrator</text>
+      <g font-family="Source Serif 4, serif" font-size="16.5" fill="#59646F">
+        <text x="604" y="140">Poziom asysty 0–4</text><text x="604" y="162" font-size="14" fill="#8A94A0">ustawia użytkownik lub opiekun</text>
+        <text x="604" y="196">Plan zadania</text><text x="604" y="218" font-size="14" fill="#8A94A0">jeden krok = jedno kliknięcie</text>
+      </g>
+      <rect x="604" y="238" width="224" height="66" rx="5" fill="#FBEAE7" stroke="#EFC3BC"/>
+      <text x="618" y="262" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#BE2718">Tarcza — nadrzędna</text>
+      <text x="618" y="285" font-family="Source Serif 4, serif" font-size="14.5" fill="#8A3125">przerywa niezależnie od poziomu</text>
+    </g>
+
+    <g>
+      <rect x="872" y="74" width="264" height="256" rx="6" fill="#FFFFFF" stroke="#D7D3C7"/>
+      <text x="892" y="106" font-family="Archivo, sans-serif" font-size="20" font-weight="700" fill="#0E1822">Wyjścia</text>
+      <g font-family="Source Serif 4, serif" font-size="16.5" fill="#59646F">
+        <text x="892" y="140">Nakładka</text><text x="892" y="162" font-size="14" fill="#8A94A0">warstwowe okno bez przechwytu myszy</text>
+        <text x="892" y="196">Magnification API</text><text x="892" y="218" font-size="14" fill="#8A94A0">lupa systemowa, nie skalowany zrzut</text>
+        <text x="892" y="252">Mowa: TTS i STT po polsku</text><text x="892" y="274" font-size="14" fill="#8A94A0">z tekstem równoległym na ekranie</text>
+        <text x="892" y="308">UI Automation: Invoke</text>
+      </g>
+    </g>
+
+    <g>
+      <rect x="1160" y="74" width="264" height="256" rx="6" fill="#F3F1EA" stroke="#D7D3C7"/>
+      <text x="1180" y="106" font-family="Archivo, sans-serif" font-size="20" font-weight="700" fill="#0E1822">Aplikacja opiekuna</text>
+      <g font-family="Source Serif 4, serif" font-size="16.5" fill="#59646F">
+        <text x="1180" y="142">Zdarzenie Tarczy</text>
+        <text x="1180" y="172">Zmiana poziomu asysty</text>
+        <text x="1180" y="202">Prośba o pomoc od rodzica</text>
+      </g>
+      <rect x="1180" y="224" width="224" height="76" rx="5" fill="#FBEAE7" stroke="#EFC3BC"/>
+      <text x="1194" y="250" font-family="Archivo, sans-serif" font-size="15.5" font-weight="700" fill="#BE2718">Czego opiekun NIE dostaje</text>
+      <text x="1194" y="273" font-family="Source Serif 4, serif" font-size="14.5" fill="#8A3125">podglądu ekranu, treści wiadomości,</text>
+      <text x="1194" y="291" font-family="Source Serif 4, serif" font-size="14.5" fill="#8A3125">zdalnego sterowania komputerem</text>
+    </g>
+
+    <g stroke="#5A6672" stroke-width="1.6" marker-end="url(#ar)" fill="none">
+      <path d="M274 202 h18"/><path d="M562 202 h18"/><path d="M850 202 h18"/><path d="M1138 202 h18"/>
+    </g>
+    <path d="M1004 336 v14 H316 v-14" stroke="#5A6672" stroke-width="1.6" fill="none" marker-end="url(#ar)" stroke-dasharray="5 4"/>
+    <text x="660" y="366" font-family="IBM Plex Mono, monospace" font-size="12" fill="#7A8794" text-anchor="middle">pętla: sprawdź, czy krok się udał</text>
+  </svg>
+  </div>
+  <div class="src">
+    <span>learn.microsoft.com — UI Automation, Magnification API, Windows.Graphics.Capture</span>
+    <span>Szczegóły i weryfikacja API: research/03-technical-feasibility.md</span>
+  </div>
+</section>
+
+<!-- ============ 20 · TWARDE OGRANICZENIA ============ -->
+<section class="slide" data-sec="Technologia">
+  <div class="kick"><b>16</b><span style="color:var(--stop)">Uczciwie</span><span class="rule"></span><span>Czego nie da się zrobić</span></div>
+  <div class="cols c2" style="gap:44px">
+    <div>
+      <h2 style="font-size:44px">Windows postawi nam pięć ścian. Żadnej z nich nie przebijemy.</h2>
+      <p class="small" style="font-size:20px">Lepiej powiedzieć to teraz niż tłumaczyć się po pierwszym demo.
+      Każde z tych ograniczeń jest własnością systemu operacyjnego, nie brakiem staranności.</p>
+      <div class="box amber" style="margin-top:16px">
+        <h4 style="color:var(--amber)">Konsekwencja produktowa</h4>
+        <p>Nakładka nie może być jedynym sposobem, w jaki użytkownik rozumie, co się dzieje.
+        W miejscach, gdzie znika, musi <em>zapowiedzieć</em>, że zniknie, i powiedzieć, czego się spodziewać:
+        <em>„za chwilę pojawi się okno z tarczą Windows — to normalne, kliknij Tak"</em>.</p>
+      </div>
+    </div>
+    <div class="pts">
+      <div class="pt"><span class="n" style="color:var(--stop)">01</span><div><h3>Okno kontroli konta użytkownika (UAC)</h3>
+        <p>Windows rysuje je na osobnym, chronionym pulpicie. Żadna aplikacja nie może tam rysować ani klikać.
+        To celowa bariera bezpieczeństwa systemu — i słusznie.</p></div></div>
+      <div class="pt"><span class="n" style="color:var(--stop)">02</span><div><h3>Okna chronione przed przechwytem</h3>
+        <p>Aplikacja może ustawić flagę wykluczającą ją z nagrywania ekranu. Odtwarzacze wideo i część
+        aplikacji bankowych to robią. Zobaczymy czarny prostokąt.</p></div></div>
+      <div class="pt"><span class="n" style="color:var(--stop)">03</span><div><h3>Aplikacje bez drzewa dostępności</h3>
+        <p>Część starych aplikacji Win32, Javy i niektóre buildy Electrona nie eksponują struktury interfejsu.
+        Tam zostaje tylko rozpoznawanie obrazu — wolniejsze, droższe i mniej pewne.</p></div></div>
+      <div class="pt"><span class="n" style="color:var(--stop)">04</span><div><h3>Podwyższone uprawnienia</h3>
+        <p>Sterowanie oknem o wyższym poziomie integralności wymaga podpisanej aplikacji z flagą UIAccess
+        zainstalowanej w chronionym katalogu. Realny koszt certyfikacji, nie przełącznik — i nigdy nie sięga poziomu SYSTEM.</p></div></div>
+      <div class="pt"><span class="n" style="color:var(--stop)">05</span><div><h3>UIAccess i Microsoft Store wykluczają się wzajemnie</h3>
+        <p>Pakowanie MSIX odbiera UIAccess: albo pełna lupa i sterowanie oknami podwyższonymi,
+        albo dystrybucja przez Store. Decyzja strategiczna na starcie, nie szczegół wdrożenia.</p></div></div>
+    </div>
+  </div>
+  <div class="src"><span>learn.microsoft.com — UAC secure desktop, SetWindowDisplayAffinity, UIAccess, UI Automation providers</span></div>
+</section>
+
+<!-- ============ SUFIT TECHNICZNY ============ -->
+<section class="slide" data-sec="Technologia">
+  <div class="kick"><b>17</b><span style="color:var(--stop)">Bez upiększeń</span><span class="rule"></span><span>Sufit techniczny</span></div>
+  <h2 style="font-size:36px;margin-bottom:6px;max-width:44ch">Na własnym benchmarku Microsoftu najlepszy agent AI wykonuje jedno zadanie na pięć. Człowiek — trzy na cztery.</h2>
+  <p class="small" style="font-size:19px;margin-bottom:6px;max-width:112ch">To najważniejsza liczba w całej prezentacji: przewraca
+  domyślne założenie o autonomicznym asystencie i jednocześnie <strong>uzasadnia nasz projekt</strong> — potwierdzenie każdego kroku
+  przez użytkownika nie jest ostrożnością, tylko jedynym trybem, który dzisiejsza technologia udźwignie.</p>
+  <div style="flex:1;min-height:0;display:flex;align-items:center">
+  <svg viewBox="0 0 1400 384" width="100%" style="max-height:100%" role="img"
+       aria-label="Wykres słupkowy skuteczności agentów AI na czterech benchmarkach, z poziomem odniesienia człowieka">
+    <g font-family="IBM Plex Mono, monospace" font-size="11.5" fill="#8A94A0" letter-spacing="1.4">
+      <text x="520" y="14">0%</text><text x="688" y="14">20%</text><text x="856" y="14">40%</text>
+      <text x="1024" y="14">60%</text><text x="1192" y="14">80%</text><text x="1360" y="14" text-anchor="end">100%</text>
+    </g>
+    <g stroke="#E2DFD5" stroke-width="1">
+      <line x1="688" y1="22" x2="688" y2="366"/><line x1="856" y1="22" x2="856" y2="366"/>
+      <line x1="1024" y1="22" x2="1024" y2="366"/><line x1="1192" y1="22" x2="1192" y2="366"/>
+      <line x1="1360" y1="22" x2="1360" y2="366"/>
+    </g>
+    <line x1="520" y1="22" x2="520" y2="366" stroke="#0E1822" stroke-width="1.6"/>
+    <g font-family="Archivo, sans-serif" font-size="15.5" fill="#2E3B48" text-anchor="end">
+      <text x="504" y="45">Człowiek</text><text x="504" y="83">Najlepszy agent — Navi, GPT-4V + UIA</text>
+      <text x="504" y="129">Człowiek</text><text x="504" y="167">Claude 3.7 Sonnet, luty 2025</text>
+      <text x="504" y="205">GPT-4V bez dodatkowego rusztowania</text>
+      <text x="504" y="251">Wyspecjalizowany potok wskazywania</text><text x="504" y="289">Goły GPT-4o</text>
+      <text x="504" y="335">GPT-4 — pojedynczy krok</text><text x="504" y="361">GPT-4 — całe zadanie</text>
+    </g>
+    <g font-family="IBM Plex Mono, monospace" font-size="11.5" fill="#0B5FCC" letter-spacing="1.6">
+      <text x="16" y="45">WINDOWSAGENTARENA</text><text x="16" y="61" font-size="10" fill="#8A94A0" letter-spacing="0.8">Microsoft · arXiv:2409.08264</text>
+      <text x="16" y="129">OSWORLD</text><text x="16" y="145" font-size="10" fill="#8A94A0" letter-spacing="0.8">arXiv:2404.07972</text>
+      <text x="16" y="251">SCREENSPOT-PRO</text><text x="16" y="267" font-size="10" fill="#8A94A0" letter-spacing="0.8">samo wskazanie elementu</text>
+      <text x="16" y="335">MIND2WEB</text><text x="16" y="351" font-size="10" fill="#8A94A0" letter-spacing="0.8">kumulacja błędów</text>
+    </g>
+    <g>
+      <rect x="520" y="32" width="626" height="20" fill="#0F6B47"/>
+      <rect x="520" y="70" width="164" height="20" fill="#0B5FCC"/>
+      <rect x="520" y="116" width="608" height="20" fill="#0F6B47"/>
+      <rect x="520" y="154" width="235" height="20" fill="#0B5FCC"/>
+      <rect x="520" y="192" width="102" height="20" fill="#0B5FCC"/>
+      <rect x="852" y="238" width="243" height="20" fill="#C9760A"/>
+      <rect x="520" y="276" width="7" height="20" fill="#BE2718"/>
+      <rect x="520" y="322" width="350" height="20" fill="#0B5FCC"/>
+      <rect x="520" y="348" width="38" height="16" fill="#BE2718"/>
+    </g>
+    <g font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" fill="#0E1822">
+      <text x="1158" y="47">74,5%</text><text x="696" y="85">19,5%</text><text x="1140" y="131">72,4%</text>
+      <text x="767" y="169">28%</text><text x="634" y="207">12,2%</text>
+      <text x="1107" y="253" fill="#C9760A">39,5–68,4%</text><text x="539" y="291" fill="#BE2718">0,8%</text>
+      <text x="882" y="337">41,7%</text><text x="570" y="362" fill="#BE2718">4,52%</text>
+    </g>
+    <g stroke="#D7D3C7"><line x1="16" y1="102" x2="1360" y2="102"/><line x1="16" y1="224" x2="1360" y2="224"/>
+      <line x1="16" y1="308" x2="1360" y2="308"/></g>
+  </svg>
+  </div>
+  <div class="cols c3" style="gap:30px;flex:0 0 auto;margin-top:8px">
+    <div class="box stop"><p style="font-size:18px"><strong>Wskazanie elementu to osobny, nierozwiązany problem.</strong>
+    Model wizyjny poproszony o wskazanie małej ikony na gęstym interfejsie trafia rzadziej niż raz na sto prób.
+    Dopiero wyspecjalizowany potok podnosi to do 40–68% — realnie, ale drogo.</p></div>
+    <div class="box stop"><p style="font-size:18px"><strong>Błędy się kumulują.</strong> 41,7% skuteczności na pojedynczym
+    kroku daje 4,52% na całym zadaniu. Dokładnie ten wzorzec dotyczy scenariusza „przeklikaj się przez pięć okienek".</p></div>
+    <div class="box safe"><p style="font-size:18px"><strong>Dlatego drzewo dostępności jest pierwszym źródłem prawdy,</strong>
+    a model wizyjny wyłącznie awaryjnym. Odczyt właściwości kontrolki jest pewny; zgadywanie z obrazu — nie.</p></div>
+  </div>
+  <div class="src">
+    <span>WindowsAgentArena — arXiv:2409.08264 (Microsoft)</span>
+    <span>OSWorld — arXiv:2404.07972</span>
+    <span>ScreenSpot-Pro — arXiv:2504.07981</span>
+    <span>Mind2Web · Online-Mind2Web</span>
+  </div>
+</section>
+
+<!-- ============ 21 · DLACZEGO TERAZ ============ -->
+<section class="slide dense" data-sec="Technologia">
+  <div class="kick"><b>18</b><span>Technologia</span><span class="rule"></span><span>Dlaczego akurat teraz</span></div>
+  <h2 style="font-size:40px;margin-bottom:16px">Trzy rzeczy zmieniły się w ciągu dwóch lat. Bez żadnej z nich ten produkt byłby demem.</h2>
+  <div class="cols c3" style="gap:34px">
+    <div class="stack">
+      <h4>01 — Modele</h4>
+      <h3>Rozumienie ekranu wystarcza już do podpowiadania, choć nie do autonomii</h3>
+      <p class="small" style="font-size:19px">W październiku 2024 najlepszy publiczny wynik na OSWorld wynosił
+      <strong>14,9%</strong>. W lutym 2025 — ok. 28%. Postęp jest szybki i realny, ale — jak pokazuje poprzedni
+      slajd — wciąż daleki od poziomu, przy którym można pozwolić modelowi klikać bez potwierdzenia.</p>
+      <div class="box safe"><p style="font-size:17px">Dla nas to dobra wiadomość: <strong>okno rynkowe jest
+      właśnie teraz.</strong> Modele są już dość dobre, by dobrze zaprojektowana asysta z potwierdzeniem działała —
+      i wciąż za słabe, by ktokolwiek wygrał ten rynek pełną automatyzacją.</p></div>
+      <p class="small" style="font-size:17px;margin-top:8px">Koszt pełnej interakcji głosowej:
+      <strong>0,01–0,035 USD</strong>; zadanie wieloetapowe 0,03–0,25 USD (obliczenie własne).</p>
+    </div>
+    <div class="stack">
+      <h4>02 — Rynek dojrzał do warstwy</h4>
+      <h3>Duzi gracze wycofali własne produkty konsumenckie</h3>
+      <p class="small" style="font-size:19px">OpenAI zamknęło Operatora po siedmiu miesiącach, Google wygasiło
+      Project Mariner — obaj przeszli z produktu konsumenckiego na warstwę modelu. To dla nas dobra i zła wiadomość
+      naraz: rdzeń wynajmiemy taniej, niż zbudujemy, ale nigdy nie będzie nasz.</p>
+    </div>
+    <div class="stack">
+      <h4>03 — Prawo</h4>
+      <h3>Dostępność przestała być dobrą wolą</h3>
+      <p class="small" style="font-size:19px">Europejski Akt o Dostępności (dyrektywa 2019/882) obowiązuje
+      od <strong>28 czerwca 2025 r.</strong> Zharmonizowana norma EN 301 549 przenosi wymagania WCAG
+      do prawa zamówień publicznych w UE.</p>
+      <div class="box safe"><p style="font-size:17px">To otwiera kanał instytucjonalny obok sprzedaży rodzinom —
+      i nakłada obowiązek na nas: narzędzie dostępności musi samo spełniać WCAG 2.2 AA.</p></div>
+    </div>
+  </div>
+  <div class="src">
+    <span>Anthropic, 22.10.2024 — computer use / OSWorld 14,9%</span>
+    <span>openai.com — Introducing ChatGPT agent (07.2025)</span>
+    <span>blog.google — Gemini computer use model</span>
+    <span>Dyrektywa (UE) 2019/882 · EN 301 549</span>
+  </div>
+</section>
+
+<!-- ============ 22 · DIVIDER RYNEK ============ -->
+<section class="slide dark divider" data-sec="Rynek">
+  <div class="kick"><b>Część IV</b><span class="rule"></span></div>
+  <div class="body vcenter">
+    <div class="num">IV</div>
+    <h1>Rynek</h1>
+    <p class="sub">Trzydzieści cztery zweryfikowane rozwiązania, jedna wolna przestrzeń
+    i trzeźwa ocena, kto może nas z niej wypchnąć.</p>
+  </div>
+</section>
+
+<!-- ============ 23 · MAPA POZYCJONOWANIA ============ -->
+<section class="slide" data-sec="Rynek">
+  <div class="kick"><b>19</b><span>Rynek</span><span class="rule"></span><span>Mapa pozycjonowania</span></div>
+  <h2 style="font-size:42px;margin-bottom:4px">Każdy konkurent jest punktem. My jesteśmy odcinkiem.</h2>
+  <p class="small" style="font-size:20px;margin-bottom:8px;max-width:100ch">Rozwiązania na rynku zajmują jedną
+  pozycję na osi „kto wykonuje krok". Wielopoziomowość oznacza, że ten sam produkt przesuwa się po całej osi —
+  i to jest różnica kategorialna, nie funkcjonalna.</p>
+  <div style="flex:1;min-height:0;display:flex;align-items:center">
+  <svg viewBox="0 0 1400 552" width="100%" style="max-height:100%" role="img"
+       aria-label="Mapa: oś pozioma od &quot;użytkownik wykonuje krok&quot; do &quot;narzędzie wykonuje za niego&quot;, oś pionowa od jednej aplikacji do całego systemu. SeniorAI zaznaczony jako odcinek na całej szerokości u góry.">
+    <defs><marker id="ax" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 1 L9 5 L0 9 z" fill="#8A94A0"/></marker></defs>
+
+    <g stroke="#E2DFD5" stroke-width="1">
+      <line x1="130" y1="180" x2="1350" y2="180"/><line x1="130" y1="290" x2="1350" y2="290"/>
+      <line x1="130" y1="400" x2="1350" y2="400"/>
+      <line x1="434" y1="56" x2="434" y2="490"/><line x1="740" y1="56" x2="740" y2="490"/>
+      <line x1="1045" y1="56" x2="1045" y2="490"/>
+    </g>
+    <line x1="130" y1="490" x2="130" y2="48" stroke="#8A94A0" stroke-width="1.6" marker-end="url(#ax)"/>
+    <line x1="130" y1="490" x2="1358" y2="490" stroke="#8A94A0" stroke-width="1.6" marker-end="url(#ax)"/>
+
+    <g font-family="IBM Plex Mono, monospace" font-size="12.5" letter-spacing="1.8" fill="#7A8794">
+      <text x="130" y="516">UŻYTKOWNIK WYKONUJE KROK SAM</text>
+      <text x="1350" y="516" text-anchor="end">NARZĘDZIE WYKONUJE ZA NIEGO</text>
+      <text transform="translate(118,486) rotate(-90)" fill="#7A8794">JEDNA APLIKACJA</text>
+      <text transform="translate(118,58) rotate(-90)" text-anchor="end" fill="#7A8794">CAŁY SYSTEM</text>
+    </g>
+
+    <line x1="251" y1="68" x2="1219" y2="68" stroke="#0B5FCC" stroke-width="12" stroke-linecap="round"/>
+    <g fill="#FFFFFF" stroke="#0B5FCC" stroke-width="3.5">
+      <circle cx="251" cy="68" r="8"/><circle cx="493" cy="68" r="8"/><circle cx="735" cy="68" r="8"/>
+      <circle cx="977" cy="68" r="8"/><circle cx="1219" cy="68" r="8"/>
+    </g>
+    <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#0B5FCC" text-anchor="middle" font-weight="600">
+      <text x="251" y="46">0</text><text x="493" y="46">1</text><text x="735" y="46">2</text>
+      <text x="977" y="46">3</text><text x="1219" y="46">4</text>
+    </g>
+    <text x="735" y="104" text-anchor="middle" font-family="Archivo, sans-serif" font-size="22" font-weight="800"
+      fill="#0B5FCC" letter-spacing="-0.4">SeniorAI — poziomy 0–4, plus Tarcza na całej długości</text>
+
+    <g fill="#0E1822">
+      <circle cx="1279" cy="138" r="7"/><circle cx="1025" cy="170" r="7"/><circle cx="687" cy="202" r="7"/>
+      <circle cx="832" cy="232" r="7"/><circle cx="275" cy="246" r="7"/><circle cx="420" cy="278" r="7"/>
+      <circle cx="1183" cy="262" r="7"/><circle cx="1255" cy="318" r="7"/><circle cx="251" cy="372" r="7"/>
+      <circle cx="457" cy="404" r="7"/><circle cx="348" cy="446" r="7"/>
+    </g>
+    <g font-family="Archivo, sans-serif" font-size="17" font-weight="600" fill="#2E3B48">
+      <text x="1265" y="143" text-anchor="end">Quick Assist · TeamViewer · AnyDesk</text>
+      <text x="1011" y="175" text-anchor="end">Candoo Tech — pomoc człowieka na żywo</text>
+      <text x="701" y="207">Aura · Malwarebytes Scam Guard · SmartScreen</text>
+      <text x="846" y="237">Dostęp głosowy Windows</text>
+      <text x="289" y="251">Lupa · Narrator</text>
+      <text x="434" y="283">Copilot Vision</text>
+      <text x="1169" y="267" text-anchor="end">Copilot Actions (eksperymentalne)</text>
+      <text x="1241" y="323" text-anchor="end">Agenci „computer use" — w piaskownicy, nie na żywym pulpicie</text>
+      <text x="265" y="377">Eldy · Telikin · WOW! Computer</text>
+      <text x="471" y="409">WalkMe · Whatfix</text>
+      <text x="362" y="451">Intro.js · Shepherd.js</text>
+    </g>
+  </svg>
+  </div>
+  <div class="src"><span>Pozycje na podstawie zweryfikowanej dokumentacji producentów — research/01-competitive-landscape.md</span><span>Oś pionowa: zasięg działania, nie jakość</span></div>
+</section>
+
+<!-- ============ 24 · TABELA PORÓWNAWCZA ============ -->
+<section class="slide" data-sec="Rynek">
+  <div class="kick"><b>20</b><span>Rynek</span><span class="rule"></span><span>Porównanie funkcji</span></div>
+  <h2 style="font-size:38px;margin-bottom:8px">Wszystko po kolei już istnieje. Razem — nie.</h2>
+  <div class="tw">
+  <table>
+    <thead><tr>
+      <th style="width:20%">Rozwiązanie</th><th>Nakładka na żywo</th><th>Rozumie dowolny ekran</th>
+      <th>Głos</th><th>Lupa</th><th>Blokuje ryzyko</th><th>Klika za użytkownika</th>
+      <th style="width:15%">Cena</th></tr></thead>
+    <tbody>
+      <tr class="us"><td class="name">SeniorAI (koncepcja)</td><td class="yes">tak</td><td class="yes">tak</td>
+        <td class="yes">tak</td><td class="yes">tak</td><td class="yes">tak</td><td class="part">za zgodą</td>
+        <td class="mono">do ustalenia</td></tr>
+      <tr><td class="name">Eldy</td><td class="no">nie — zamknięta powłoka</td><td class="no">nie</td><td class="no">nie zweryf.</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="mono">darmowe</td></tr>
+      <tr><td class="name">Telikin / WOW! Computer</td><td class="no">nie — własny system</td><td class="no">nie</td><td class="part">czyta e-maile</td><td class="part">zoom 200%</td><td class="no">nie</td><td class="part">człowiek, płatnie</td><td class="mono">699–1299 USD</td></tr>
+      <tr><td class="name">GrandPad</td><td class="no">nie — zamknięty tablet</td><td class="no">nie zweryf.</td><td class="no">wideorozmowy</td><td class="no">nie zweryf.</td><td class="part">zamknięta lista kontaktów</td><td class="no">nie</td><td class="mono">25–65 USD/mies.</td></tr>
+      <tr><td class="name">Windows Lupa · Narrator</td><td class="no">nie</td><td class="part">Narrator opisuje obrazy</td><td class="yes">czyta ekran</td><td class="yes">tak</td><td class="no">nie</td><td class="no">nie</td><td class="mono">darmowe</td></tr>
+      <tr><td class="name">Windows Dostęp głosowy</td><td class="no">nie prowadzi przez zadanie</td><td class="no">nie</td><td class="yes">pełne sterowanie</td><td class="no">nie</td><td class="no">nie</td><td class="part">wykonuje komendy</td><td class="mono">darmowe</td></tr>
+      <tr><td class="name">Copilot Vision · Recall · Click to Do</td><td class="part">odpowiada o ekranie</td><td class="yes">tak</td><td class="yes">tylko rozmowa</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="mono">M365 lub Copilot+ PC</td></tr>
+      <tr><td class="name">Copilot Actions</td><td class="part">zadania wieloetapowe</td><td class="yes">tak</td><td class="no">nie zweryf.</td><td class="no">nie</td><td class="part">zgody per folder</td><td class="yes">w koncie agenta</td><td class="mono">Insider, domyślnie off</td></tr>
+      <tr><td class="name">WalkMe · Whatfix</td><td class="part">tylko w jednej apce</td><td class="part">DeepUI</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="mono">43–79 tys. USD/rok</td></tr>
+      <tr><td class="name">Quick Assist · TeamViewer</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="yes">pełne przejęcie przez człowieka</td><td class="mono">darmowe / abonament</td></tr>
+      <tr><td class="name">Aura · EverSafe · Malwarebytes Scam Guard</td><td class="part">czat AI na żądanie</td><td class="part">anomalie i ocena treści</td><td class="no">nie zweryf.</td><td class="no">nie</td><td class="part">ostrzega, nie blokuje akcji</td><td class="no">nie</td><td class="mono">0–30 USD/mies.</td></tr>
+      <tr><td class="name">Candoo Tech</td><td class="no">nie — usługa ludzka</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="no">nie</td><td class="yes">człowiek zdalnie</td><td class="mono">228–240 USD/rok</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="src"><span>Pełna tabela 34 pozycji z linkami do dokumentacji: research/01-competitive-landscape.md</span><span>„nie zweryf." = nie znaleziono potwierdzenia w źródle pierwotnym</span></div>
+</section>
+
+<!-- ============ 25 · PRZEWAGA ============ -->
+<section class="slide" data-sec="Rynek">
+  <div class="kick"><b>21</b><span>Rynek</span><span class="rule"></span><span>Co realnie mamy</span></div>
+  <div class="cols c2" style="gap:46px">
+    <div>
+      <h2 style="font-size:44px">Cztery przewagi, których nie da się skopiować w jednej aktualizacji.</h2>
+      <div class="pts">
+        <div class="pt"><span class="n">01</span><div><h3>Skala jest suwakiem, nie ustawieniem</h3>
+          <p>Konkurenci wybrali jedną pozycję na osi „kto klika". My przesuwamy się po niej w trakcie
+          jednej sesji — bo potrzeba użytkownika też się zmienia w trakcie jednej sesji.</p></div></div>
+        <div class="pt"><span class="n">02</span><div><h3>Tarcza jest prostopadła do wszystkiego</h3>
+          <p>Ochrona nie jest osobnym produktem obok asystenta ani trybem, który trzeba włączyć.
+          Jest jedyną rzeczą działającą także wtedy, gdy asystent milczy.</p></div></div>
+        <div class="pt"><span class="n">03</span><div><h3>Działa na komputerze, który senior już ma</h3>
+          <p>Bez nowego sprzętu (Telikin, GrandPad), bez wymogu Copilot+ PC z NPU (Recall, Click to Do)
+          i bez subskrypcji cudzej platformy jako warunku wstępnego (Copilot Vision).</p></div></div>
+        <div class="pt"><span class="n">04</span><div><h3>Projekt wywiedziony z dowodów, nie z gustu</h3>
+          <p>Dwadzieścia par „badanie → decyzja" jest audytowalne. To jedyna przewaga, którą można
+          obronić przed komisją przetargową w modelu instytucjonalnym.</p></div></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="box stop">
+        <h4 style="color:var(--stop)">A teraz to, co nas może zabić</h4>
+        <p><strong>Microsoft.</strong> Copilot Vision, Click to Do, Recall i Copilot Actions to publicznie
+        ogłoszony kierunek „agentic OS", z dostępem do jądra systemu i domyślną instalacją na każdym nowym
+        komputerze. Jeśli Microsoft dołoży profil senioralny — naturalne rozszerzenie bardzo aktywnego działu
+        dostępności — nasza przewaga znika w jednej–dwóch aktualizacjach Windows.</p>
+      </div>
+      <div class="box amber">
+        <h4 style="color:var(--amber)">Nasza odpowiedź, sformułowana uczciwie</h4>
+        <p>Nie wygramy z Microsoftem na technologii ani dystrybucji. Możemy wygrać na <strong>jednej grupie
+        użytkowników, pod którą nikt nie zoptymalizuje produktu ogólnego</strong>: na tempie, języku, cierpliwości
+        i na tym, że rodzina jest częścią systemu. Realistyczne wyjście to przejęcie przez gracza z dystrybucją
+        do tej grupy — ubezpieczyciela, operatora, bank albo samego Microsoftu.</p>
+      </div>
+    </div>
+  </div>
+  <div class="src"><span>Microsoft Ignite 11.2025 — kierunek agentic OS</span><span>blogs.windows.com — podsumowanie roku dostępności 2025</span></div>
+</section>
+
+<!-- ============ 26 · DIVIDER RYZYKA ============ -->
+<section class="slide dark divider" data-sec="Ryzyka i plan">
+  <div class="kick"><b>Część V</b><span class="rule"></span></div>
+  <div class="body vcenter">
+    <div class="num">V</div>
+    <h1>Ryzyka<br>i plan</h1>
+    <p class="sub">Sześć powodów, dla których ten produkt może nie zadziałać —
+    i kryteria, po których poznamy to wcześnie, a nie po dwóch latach.</p>
+  </div>
+</section>
+
+<!-- ============ 27 · GDZIE TO MOŻE POLEC ============ -->
+<section class="slide dense" data-sec="Ryzyka i plan">
+  <div class="kick"><b>22</b><span style="color:var(--stop)">Bez upiększeń</span><span class="rule"></span><span>Gdzie to może polec</span></div>
+  <h2 style="font-size:42px;margin-bottom:14px">Cztery z tych ryzyk wynikają z samego pomysłu, nie z wykonania.</h2>
+  <div class="cols c2" style="gap:40px 46px;align-content:start">
+    <div class="stack" style="gap:14px">
+      <div class="box stop"><h3 style="font-size:21px">1 · Nasz produkt wygląda jak oszustwo, przed którym chroni</h3>
+        <p>Przejęcie kontroli jest architektonicznie identyczne z mechanizmem, który odpowiada za
+        48,8% strat seniorów w kategorii „wsparcie techniczne". Jeden incydent — albo samo pomylenie
+        naszej pomocy z oszustwem przez użytkownika — jest wizerunkowo nieodwracalny dla marki
+        zbudowanej na obietnicy ochrony.</p></div>
+      <div class="box stop"><h3 style="font-size:21px">2 · Poprzeczka niezawodności Tarczy jest ekstremalna</h3>
+        <p>Fałszywy negatyw kosztuje średnio 38,5 tys. dolarów i niszczy zaufanie natychmiast.
+        Fałszywy pozytyw — zablokowany legalny przelew — uderza dokładnie w lęk przed „zepsuciem",
+        który deklaruje 43,4% seniorów, tyle że tym razem winne jest nasze oprogramowanie.</p></div>
+      <div class="box amber"><h3 style="font-size:21px">3 · Głos może nie działać u tych, którzy go najbardziej potrzebują</h3>
+        <p>Rozpoznawanie mowy dla starzejących się głosów ma o ok. 10 punktów procentowych wyższy
+        wskaźnik błędu; przy dyzartrii sięga 30–80%. Demo działające na sprawnym 65-latku nie
+        generalizuje się na 80-latka po udarze.</p></div>
+    </div>
+    <div class="stack" style="gap:14px">
+      <div class="box amber"><h3 style="font-size:21px">4 · Możemy odbierać korzyść poznawczą, którą obiecujemy</h3>
+        <p>Metaanaliza obejmująca 411 430 osób wiąże aktywne korzystanie z technologii z niższym
+        ryzykiem pogorszenia funkcji poznawczych. Jeśli produkt systematycznie wyręcza zamiast prowadzić,
+        działa przeciw własnej tezie.</p></div>
+      <div class="box amber"><h3 style="font-size:21px">5 · Model biznesowy jest nieudowodniony, nie zwalidowany</h3>
+        <p>Przez dwie dekady żadna samodzielna subskrypcja oprogramowania dla seniorów na własnym Windowsie
+        nie osiągnęła skali. Eldy jest darmowe, SimplicITy zniknęło. Kategorie, które zarabiają, sprzedają sprzęt
+        albo doczepiają się do budżetu na ochronę tożsamości.</p></div>
+      <div class="box stop"><h3 style="font-size:21px">6 · Dowody pochodzą głównie spoza Polski</h3>
+        <p>Niemal cała cytowana literatura to USA, Wielka Brytania i Europa Zachodnia. Nie znaleziono badań
+        oceniających wprost reakcję seniorów na <em>automatyczne blokowanie akcji na komputerze</em>.
+        Tę lukę musimy wypełnić własnymi badaniami, nie założeniem.</p></div>
+    </div>
+  </div>
+  <div class="src"><span>FBI IC3 2024 · Marquine Raymundo i da Silva Santana 2014 · Vipperla i wsp. 2010</span><span>Metaanaliza N=411 430 · Mannheim i wsp. 2023</span></div>
+</section>
+
+<!-- ============ 28 · PRYWATNOŚĆ I PRAWO ============ -->
+<section class="slide dense" data-sec="Ryzyka i plan">
+  <div class="kick"><b>23</b><span>Ryzyka i plan</span><span class="rule"></span><span>Prywatność i zgodność</span></div>
+  <div class="cols c2b" style="gap:44px">
+    <div>
+      <h2 style="font-size:44px">Asystent, który patrzy na ekran, patrzy też na konto bankowe i wyniki badań.</h2>
+      <p class="small" style="font-size:20px">To nie jest szczegół implementacyjny, tylko główne ryzyko
+      regulacyjne i wizerunkowe produktu. Trzy decyzje architektoniczne podejmujemy zanim powstanie kod:</p>
+      <div class="pts">
+        <div class="pt"><span class="n">01</span><div><h3 style="font-size:21px">Brak trybu ciągłego</h3>
+          <p>Ekran nie jest strumieniowany. Klatka powstaje wyłącznie na wyraźne żądanie użytkownika
+          albo po sygnale lokalnego klasyfikatora ryzyka.</p></div></div>
+        <div class="pt"><span class="n">02</span><div><h3 style="font-size:21px">Maskowanie przed wysłaniem</h3>
+          <p>Pola haseł, numery kart i identyfikatory są usuwane lokalnie, zanim cokolwiek opuści komputer.</p></div></div>
+        <div class="pt"><span class="n">03</span><div><h3 style="font-size:21px">Opiekun dostaje zdarzenie, nie obraz</h3>
+          <p>„Tarcza zatrzymała próbę o 14:20" — nie zrzut ekranu, nie treść, nie podgląd na żywo.</p></div></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="box sig"><h4>RODO — cztery obowiązki, które nas dotyczą wprost</h4>
+        <p style="font-size:17.5px">Minimalizacja danych (art. 5). Dane szczególnej kategorii możliwe na ekranie —
+        zdrowie (art. 9). Ocena skutków (DPIA) przy systematycznym monitorowaniu (art. 35). Prawo do niepodlegania
+        decyzji automatycznej o istotnych skutkach (art. 22) — dotyczy blokad Tarczy.</p></div>
+      <div class="box amber"><h4 style="color:var(--amber)">Akt o sztucznej inteligencji — rozporządzenie (UE) 2024/1689</h4>
+        <p style="font-size:17.5px">Zakazy stosuje się od <strong>2 lutego 2025</strong>, obowiązki dla modeli
+        ogólnego przeznaczenia od <strong>2 sierpnia 2025</strong>. <strong>Korekta wobec daty powszechnie cytowanej:</strong>
+        pierwotny termin 2 sierpnia 2026 dla systemów wysokiego ryzyka z Załącznika III został przesunięty
+        pakietem „Digital Omnibus" na <strong>2 grudnia 2027</strong> (Załącznik I — 2 sierpnia 2028).</p>
+        <p style="font-size:17.5px;margin-top:9px"><strong>Artykuł 5 dotyczy nas wprost:</strong> zakazuje systemów
+        wykorzystujących podatność wynikającą z <em>wieku</em> do istotnego zniekształcenia zachowania. Produkt
+        zbudowany wokół perswazji wobec seniora musi wykazać, że działa na jego korzyść — projektowo, nie deklaratywnie.</p>
+        <p style="font-size:17.5px;margin-top:9px">Artykuł 50: użytkownik musi wiedzieć, że rozmawia z AI.
+        U nas to element interfejsu, nie compliance — asystent zawsze podpisuje się imieniem.</p>
+        <p style="font-size:17.5px;margin-top:9px"><strong>Pułapka do ominięcia:</strong> analiza tonu głosu
+        w celu wykrycia paniki seniora może kwalifikować produkt jako system rozpoznawania emocji na podstawie
+        danych biometrycznych (art. 3 pkt 39). Heurystyki tekstowe omijają to całkowicie — i tak je projektujemy.</p></div>
+      <p class="small" style="margin:0;font-size:17px">Wstępna analiza własna, nie opinia prawna. Klasyfikacja
+      wobec Załącznika III wymaga formalnej oceny przed wdrożeniem.</p>
+    </div>
+  </div>
+  <div class="src"><span>Rozporządzenie (UE) 2024/1689 (akt o sztucznej inteligencji), art. 5 i 50</span><span>RODO, art. 5, 9, 22, 35</span><span>Dyrektywa (UE) 2019/882 (EAA)</span></div>
+</section>
+
+<!-- ============ 29 · MODEL BIZNESOWY ============ -->
+<section class="slide" data-sec="Ryzyka i plan">
+  <div class="kick"><b>24</b><span>Ryzyka i plan</span><span class="rule"></span><span>Kto za to zapłaci</span></div>
+  <h2 style="font-size:42px;margin-bottom:14px">Senior nie kupi oprogramowania. Kupi je ktoś, kto traci pieniądze, gdy senior zostanie okradziony.</h2>
+  <div class="cols c3" style="gap:34px">
+    <div class="stack">
+      <h4>Kanał A</h4><h3>Rodzina płaci abonament</h3>
+      <p class="small" style="font-size:19px">Model sprawdzony w sąsiednich kategoriach: Aura 7–30 USD/mies.,
+      Candoo Tech 228–240 USD/rok, GrandPad 25–65 USD/mies. Płaci dorosłe dziecko, nie użytkownik.</p>
+      <div class="box stop"><p style="font-size:17px"><strong>Ryzyko:</strong> to jedyny kanał, w którym
+      dwadzieścia lat prób nie dało nikomu skali. Traktujemy go jako hipotezę do walidacji, nie jako plan.</p></div>
+    </div>
+    <div class="stack">
+      <h4>Kanał B — rekomendowany wedge</h4><h3>Doczepienie do rachunku, który już istnieje</h3>
+      <p class="small" style="font-size:19px">Bank, ubezpieczyciel, operator telekomunikacyjny, dostawca internetu.
+      Mają dystrybucję do dokładnie tej grupy, mają zaufanie i — co najważniejsze — <strong>straty
+      z oszustw są pozycją w ich własnym rachunku wyników</strong>.</p>
+      <div class="box safe"><p style="font-size:17px"><strong>Dlaczego to działa:</strong> jako jedyny
+      kanał ma zgodny interes ekonomiczny. Nie sprzedajemy wygody, tylko redukcję strat, które partner
+      i tak ponosi.</p></div>
+    </div>
+    <div class="stack">
+      <h4>Kanał C</h4><h3>Instytucje publiczne</h3>
+      <p class="small" style="font-size:19px">Biblioteki, ośrodki pomocy społecznej, uniwersytety trzeciego
+      wieku, programy senioralne. Europejski Akt o Dostępności tworzy tu obowiązek, nie tylko możliwość.</p>
+      <div class="box amber"><p style="font-size:17px"><strong>Charakterystyka:</strong> długi cykl sprzedaży,
+      ale to jedyny kanał, w którym audytowalna tabela „badanie → decyzja projektowa" jest realnym
+      argumentem przetargowym, a nie ozdobnikiem.</p></div>
+    </div>
+  </div>
+  <p class="small" style="margin-top:22px;max-width:104ch"><strong>Rekomendacja:</strong> zbudować pod kanał B,
+  wypuścić przez kanał A, żeby zebrać dowód skuteczności, i wejść w C dopiero z twardymi danymi z pilotażu.
+  Odwrotna kolejność — najpierw sprzedaż rodzinom — powtarza ścieżkę, która nie zadziałała nikomu.</p>
+  <div class="src"><span>Ceny: aura.com · candootech.com · grandpad.net (stan na research 09.2026)</span><span>Dyrektywa (UE) 2019/882</span></div>
+</section>
+
+<!-- ============ 30 · ROADMAPA ============ -->
+<section class="slide" data-sec="Ryzyka i plan">
+  <div class="kick"><b>25</b><span>Ryzyka i plan</span><span class="rule"></span><span>Plan i kryteria zabicia projektu</span></div>
+  <h2 style="font-size:38px;margin-bottom:8px">Każdy etap ma warunek, po którym przerywamy. To nie pesymizm, tylko sposób, żeby nie stracić dwóch lat.</h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:9%">Etap</th><th style="width:26%">Co robimy</th><th style="width:30%">Co mierzymy</th><th style="width:35%">Kiedy przerywamy</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">0–3 mies.</td><td class="name">Badania formatywne w domach 12–15 polskich seniorów 70+</td>
+        <td>Skuteczność wykonania 5 typowych zadań bez pomocy. Reakcja na makietę Tarczy i na poziom 4.</td>
+        <td>Jeśli blokada wywołuje odrzucenie zamiast ulgi — Tarcza wymaga przeprojektowania, zanim powstanie kod.</td></tr>
+      <tr><td class="mono">3–6 mies.</td><td class="name">Sonda techniczna: pokrycie drzewa dostępności</td>
+        <td>Odsetek elementów UI możliwych do jednoznacznego wskazania w 20 aplikacjach realnie używanych przez polskich seniorów.</td>
+        <td>Poniżej ok. 90% wskazań przy połączeniu drzewa dostępności i modelu wizyjnego warstwa prowadzenia nie działa wiarygodnie.</td></tr>
+      <tr><td class="mono">6–12 mies.</td><td class="name">Tarcza na korpusie prawdziwych scenariuszy oszustw</td>
+        <td>Czułość i precyzja. Osobno: odsetek fałszywych alarmów na legalnych operacjach bankowych.</td>
+        <td>Fałszywe alarmy na legalnej bankowości powyżej progu ustalonego z partnerem — Tarcza nie może trafić do produkcji.</td></tr>
+      <tr><td class="mono">12–18 mies.</td><td class="name">Pilotaż: 50 gospodarstw domowych + jeden partner instytucjonalny</td>
+        <td><strong>Kluczowa metryka: średni poziom asysty w czasie.</strong> Powinien <em>spadać</em>, a odsetek zadań samodzielnych rosnąć.</td>
+        <td>Jeśli poziom asysty rośnie, produkt buduje zależność zamiast kompetencji — działa przeciw własnej tezie.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="cols c3" style="gap:30px;margin-top:24px">
+    <div class="box sig"><h4>Metryka, której nikt nie mierzy</h4><p style="font-size:18px">Zadowolenie seniora
+    <em>i osobno</em> zadowolenie opiekuna. Rozjazd między nimi jest wczesnym sygnałem paternalizmu:
+    rodzina zachwycona, użytkownik nie — to porażka, nawet przy dobrej retencji.</p></div>
+    <div class="box sig"><h4>Metryka bezpieczeństwa</h4><p style="font-size:18px">Liczba zdarzeń Tarczy
+    na 1000 godzin użytkowania, rozbita na potwierdzone zagrożenia i fałszywe alarmy. Publikowana,
+    nie ukrywana — to jedyny sposób budowania zaufania w tej kategorii.</p></div>
+    <div class="box sig"><h4>Metryka uczenia</h4><p style="font-size:18px">Odsetek zadań, które użytkownik
+    po czterech tygodniach wykonuje na poziomie 0 lub 1, choć wcześniej wymagały poziomu 2+.
+    To jest właściwa definicja sukcesu produktu.</p></div>
+  </div>
+  <div class="src"><span>Kryteria wywiedzione z sześciu ryzyk z tej części i z dossier naukowego, sekcje 5 i 7</span></div>
+</section>
+
+<!-- ============ 31 · ZAMKNIĘCIE ============ -->
+<section class="slide dark" data-sec="SeniorAI">
+  <div class="kick"><b>Podsumowanie</b><span class="rule"></span><span>Wersja 0.1 · wrzesień 2026</span></div>
+  <div class="body vcenter">
+    <h1 style="font-size:78px;max-width:22ch">Sukcesem jest dzień, w którym Halina wyłącza asystenta.</h1>
+    <p class="lead" style="margin-top:30px;max-width:60ch">Produkt, który buduje zależność, nie rozwiązał problemu —
+    tylko przesunął go z rodziny na oprogramowanie. Dlatego domyślnym poziomem jest cisza, a jedyną rzeczą,
+    która włącza się sama, jest tarcza.</p>
+  </div>
+  <div class="cols c3" style="gap:40px;margin-top:auto;padding-top:26px;border-top:1px solid #2A3948;flex:0 0 auto">
+    <div><div class="kick" style="margin:0 0 8px">Co jest gotowe</div>
+      <p style="font-size:19px;margin:0;color:#DDE3E9">Interaktywna makieta pięciu scenariuszy.
+      Cztery dossier badawcze z pełną bibliografią. Model asysty i architektura.</p></div>
+    <div><div class="kick" style="margin:0 0 8px">Czego brakuje</div>
+      <p style="font-size:19px;margin:0;color:#DDE3E9">Dowodów z polskiego terenu, sondy technicznej
+      na realnych aplikacjach i partnera z kanału B.</p></div>
+    <div><div class="kick" style="margin:0 0 8px">Następny krok</div>
+      <p style="font-size:19px;margin:0;color:#DDE3E9">Dwanaście wywiadów w domach. Nie kod.
+      Jeśli Tarcza wywoła odrzucenie, cały produkt wymaga przeprojektowania — lepiej dowiedzieć się w marcu.</p></div>
+  </div>
+</section>
