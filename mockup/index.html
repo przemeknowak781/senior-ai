@@ -1,7 +1,7 @@
 <title>Makieta SeniorAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
   /* page chrome — light */
@@ -108,17 +108,33 @@ h1{font-size:clamp(2rem,4.4vw,3rem);font-weight:700;letter-spacing:-.022em;line-
   padding:0 12px;gap:9px;font-size:11px;color:#5F6368}
 .url .u{flex:1;height:22px;border-radius:11px;background:#F1F3F4;display:flex;align-items:center;padding:0 11px}
 .wbody{background:#fff;height:calc(100% - 62px);padding:26px 30px}
-.wbody h3{margin:0 0 10px;font-size:17px;color:#1A1A1A}
+.prize{background:linear-gradient(90deg,#FF00A8,#FFC800);color:#fff;font-family:Anton,Impact,sans-serif;
+  font-size:19px;padding:9px 14px;text-align:center;text-shadow:1px 1px 0 rgba(0,0,0,.35);letter-spacing:.02em;
+  border:2px dashed #fff;outline:2px solid #FF00A8;margin-bottom:13px}
+.scanrow{font-family:Verdana,Geneva,sans-serif;font-size:12px;color:#B00000;font-weight:700;margin-bottom:5px}
+.scanbar{height:12px;background:#EEE;border:1px solid #CFCFCF;margin-bottom:15px}
+.scanbar i{display:block;height:100%;width:87%;
+  background:repeating-linear-gradient(45deg,#E23A2E 0 6px,#F87A70 6px 12px)}
 .sk{height:9px;background:#EEE;border-radius:2px;margin:8px 0}
-.pop{left:880px;top:60px;width:470px;height:200px;box-shadow:0 22px 48px -12px rgba(0,0,0,.55),0 0 0 2px #B3261E}
-.pop .wt{background:#B3261E;color:#fff;font-weight:600}
-.pop .wc i{color:#fff}
-.pbody{background:#fff;padding:16px 20px;text-align:center;height:calc(100% - 30px)}
-.pbody .big{font-size:19px;font-weight:700;color:#B3261E;margin:2px 0 7px}
-.pbody p{font-size:11.5px;color:#333;margin:0 0 11px;line-height:1.45}
-.pbody .cta{display:inline-flex;height:32px;align-items:center;padding:0 20px;background:#B3261E;color:#fff;
-  border-radius:3px;font-size:13.5px;font-weight:700}
-.dl{position:absolute;left:900px;top:300px;width:330px;background:#fff;border-radius:6px;padding:10px 12px;
+.pop{left:880px;top:56px;width:470px;height:302px;border-radius:2px;
+  box-shadow:0 20px 44px -10px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.35)}
+.pchrome{height:22px;background:#DEDEDE;border-bottom:1px solid #B8B8B8;display:flex;align-items:center;gap:6px;
+  padding:0 8px;font-size:9.5px;color:#555;font-family:system-ui,sans-serif}
+.pchrome b{width:8px;height:8px;border-radius:50%;background:#C33;flex:0 0 auto}
+.pchrome i{margin-left:auto;font-style:normal;font-size:10px;color:#333}
+.pbody{height:calc(100% - 22px);background:linear-gradient(#FFF3C8,#FFD8CE);text-align:center;padding-bottom:10px}
+.pbar{background:#FFE100;color:#A80000;font-weight:700;font-size:11px;letter-spacing:.09em;padding:5px 4px;
+  font-family:Verdana,Geneva,sans-serif;border-bottom:2px solid #E23A2E}
+.ph{font-family:Anton,Impact,"Arial Black",sans-serif;font-size:30px;line-height:1.02;color:#D40000;
+  margin:11px 12px 8px;text-shadow:1px 1px 0 #fff,2px 2px 0 rgba(0,0,0,.22)}
+.pp{font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#7A1500;margin:0 18px 9px;line-height:1.4}
+.pcount{font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#222;margin-bottom:9px}
+.pcount b{color:#D40000;font-size:13.5px}
+.pcta{display:inline-flex;height:38px;align-items:center;padding:0 20px;border-radius:4px;color:#fff;
+  background:linear-gradient(#46DA51,#11A129);font-family:Verdana,Geneva,sans-serif;font-weight:700;font-size:14px;
+  box-shadow:0 3px 0 #0A7A20,0 5px 9px rgba(0,0,0,.32);text-shadow:0 1px 1px rgba(0,0,0,.45)}
+.pseal{font-family:Verdana,Geneva,sans-serif;font-size:8.5px;color:#6E6E6E;margin-top:10px}
+.dl{position:absolute;left:900px;top:392px;width:330px;background:#fff;border-radius:6px;padding:10px 12px;
   z-index:2;display:none;gap:9px;align-items:center;font-size:11.5px;
   box-shadow:0 14px 32px -8px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.12)}
 .screen[data-win~="dl"] .dl{display:flex}
@@ -313,17 +329,22 @@ footer{border-top:1px solid var(--rule);margin-top:34px;padding:18px 0 48px;font
       <div class="wt">Przeglądarka<div class="wc"><i>&#8211;</i><i>&#9633;</i><i>&#10005;</i></div></div>
       <div class="url"><span>&#8249; &#8250; &#8635;</span><div class="u">windows-security-alert-47.online/scan</div></div>
       <div class="wbody">
-        <h3>Skanowanie systemu…</h3>
-        <div class="sk" style="width:76%"></div><div class="sk" style="width:62%"></div>
+        <div class="prize">GRATULACJE! Jesteś 1 000 000 GOŚCIEM! &gt;&gt; ODBIERZ NAGRODĘ &lt;&lt;</div>
+        <div class="scanrow">Skanowanie systemu... 87% — WYKRYTO ZAGROŻENIA</div>
+        <div class="scanbar"><i></i></div>
         <div class="sk" style="width:70%"></div><div class="sk" style="width:38%"></div>
       </div>
     </div>
     <div class="win pop">
-      <div class="wt">WINDOWS DEFENDER — ALERT<div class="wc"><i>&#10005;</i></div></div>
+      <div class="pchrome"><b></b>windows-security-alert-47.online<i>&#10005;</i></div>
       <div class="pbody">
-        <div class="big">TWÓJ KOMPUTER JEST ZARAŻONY</div>
-        <p>Wykryto 5 wirusów. Twoje hasła bankowe są zagrożone.<br>Zadzwoń natychmiast do wsparcia Microsoft:</p>
-        <div class="cta">800 190 447 — POMOC 24/7</div>
+        <div class="pbar">&#9888; &#9888; &#9888;  ALERT BEZPIECZEŃSTWA  &#9888; &#9888; &#9888;</div>
+        <div class="ph">TWÓJ KOMPUTER JEST<br>ZARAŻONY Z 5 WIRUSY!</div>
+        <p class="pp">Twoje hasło bankowy i zdjęcia rodzina są w niebezpieczeństwo!!!
+        Zadzwoń teraz na Microsoft pomoc techniczna.</p>
+        <div class="pcount">System zostanie zablokowany za: <b>04:58</b></div>
+        <div class="pcta">&#9742; ZADZWOŃ TERAZ — 800 190 447</div>
+        <div class="pseal">&#10003; Certyfikat bezpieczeństwo &middot; &#10003; Microsoft Partner &middot; &#10003; 100% Gwarancja</div>
       </div>
     </div>
     <div class="dl"><span class="ic">
@@ -536,6 +557,7 @@ komunikatem Microsoftu. Pełny research i porównanie rynkowe znajdują się w p
         '<li>Ten adres nie należy do Microsoftu.</li>'+
         '<li>Pobrał się program, który daje obcym władzę nad komputerem.</li>'+
         '<li>To ostrzeżenie pokazuje strona w internecie, a nie Twój komputer.</li>'+
+        '<li>Napisane łamaną polszczyzną. Microsoft tak nie pisze.</li>'+
         '<li>Jeśli uważasz, że to pomyłka — możesz iść dalej.</li></ul></div>';
       E.acts.innerHTML='<button class="b ok">Zamknij to okno</button><button class="b">Zadzwoń do córki</button><button class="b">Powiedz więcej</button>';
       E.vTxt.innerHTML='<em>Zatrzymaj się.</em> To nie jest wiadomość od Microsoftu. Nie dzwoń pod ten numer.';
@@ -598,7 +620,8 @@ komunikatem Microsoftu. Pełny research i porównanie rynkowe znajdują się w p
       e:[['Trzy kolory, trzy znaczenia','Pomarańczowy — Twoja kolej. Czarny — teraz działa asystent. Czerwony — stop. Zielony potwierdza, że jest bezpiecznie. Podział wzorowany na barwach bezpieczeństwa ISO 3864, które użytkownik zna z otoczenia fizycznego od dziesięcioleci.'],
          ['Prosty język jako wymóg, nie styl','Każde zdanie w interfejsie jest krótkie, w stronie czynnej i bez słów z branży: „program, który daje obcej osobie władzę nad Twoim komputerem" zamiast „narzędzie zdalnego dostępu". Komunikat, którego użytkownik nie rozumie, nie chroni go.'],
          ['Zdalny dostęp jako wektor ataku','Uruchomienie narzędzia typu AnyDesk w zbiegu z innymi sygnałami jest traktowane jako alarm — to standardowy element oszustw na „wsparcie techniczne".'],
-         ['Wyjaśnienie zamiast zakazu','Blokada bez uzasadnienia uczy nieufności do narzędzia, nie do oszusta.']]},
+         ['Wyjaśnienie zamiast zakazu','Blokada bez uzasadnienia uczy nieufności do narzędzia, nie do oszusta.'],
+         ['Uwaga: nie każde oszustwo jest tak krzykliwe','Ten przykład jest celowo jaskrawy, żeby na makiecie było widać, co jest zagrożeniem, a co naszym interfejsem. W rzeczywistości najgroźniejsze są <strong>staranne imitacje okien systemowych</strong>, nieodróżnialne na oko. Dlatego Tarcza opiera się na sygnałach strukturalnych — adres domeny, pobrany program zdalnego dostępu, wyświetlony numer telefonu — a nie na wyglądzie.']]},
     handover:{h:'Przejęcie kontroli — z widocznymi rękami',
       b:'<p>To moment największego ryzyka dla zaufania, bo z zewnątrz wygląda jak schemat oszustwa. Dlatego nic nie dzieje się w tle: widoczny kursor, odliczanie, dziennik kroków, zatrzymanie przed każdą akcją nieodwracalną.</p><p>Kliknięcia realizujemy wzorcami UI Automation, nie symulacją ruchu myszy. Istnieje twarda granica: nakładka <strong>nie zadziała</strong> na oknie kontroli konta użytkownika — Windows rysuje je na osobnym, chronionym pulpicie.</p>',
       e:[['UI Automation zamiast myszy','Invoke wykonuje akcję niezależnie od pozycji kursora i jest widoczne dla technologii asystujących.','https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview'],
