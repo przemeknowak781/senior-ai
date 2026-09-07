@@ -1,0 +1,625 @@
+<title>Makieta SeniorAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  /* page chrome — light */
+  --bg:#FCFCFD; --fg:#0B0B0C; --mut:#5A5D63; --rule:#DEDFE2; --hair:#EDEEF0;
+  --acc:#B34700; --acc-lo:#FDF1E9;
+  /* product signal roles — ISO 3864, fixed in both themes (the overlay is depicted, not themed) */
+  --sig:#FF6A1F; --sig-txt:#B34700; --stop:#B3261E; --safe:#0B6B3A; --ink:#0B0B0C; --paper:#FFFFFF;
+  /* simulated Windows chrome — fixed */
+  --w-bar:#F3F3F3; --w-line:#E3E3E3; --w-txt:#1A1A1A; --w-sub:#5E5E5E; --w-acc:#0067C0;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B0B0C; --fg:#F4F4F5; --mut:#9DA1A8; --rule:#2B2C30; --hair:#1A1B1E;
+  --acc:#FF9557; --acc-lo:#1E1408;}}
+:root[data-theme="dark"]{
+  --bg:#0B0B0C; --fg:#F4F4F5; --mut:#9DA1A8; --rule:#2B2C30; --hair:#1A1B1E;
+  --acc:#FF9557; --acc-lo:#1E1408;}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);margin:0;line-height:1.5;
+  font-family:"Atkinson Hyperlegible",Verdana,"DejaVu Sans",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+/* ---------- header ---------- */
+header{padding:52px 0 0}
+.meta{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mut);display:flex;gap:20px;flex-wrap:wrap;padding-bottom:14px;border-bottom:2px solid var(--fg)}
+.meta b{color:var(--acc);font-weight:600}
+h1{font-size:clamp(2rem,4.4vw,3rem);font-weight:700;letter-spacing:-.022em;line-height:1.06;
+  margin:26px 0 16px;max-width:19ch;text-wrap:balance}
+.lede{max-width:60ch;font-size:1.05rem;color:var(--mut);margin:0 0 30px}
+
+/* ---------- scenario tabs ---------- */
+.tabs{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.tab{appearance:none;background:none;border:0;border-right:1px solid var(--rule);cursor:pointer;
+  padding:13px 22px 12px;font-family:inherit;color:var(--mut);text-align:left;position:relative;
+  display:flex;flex-direction:column;gap:1px}
+.tab:first-child{padding-left:0}
+.tab .n{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.16em}
+.tab .t{font-size:.95rem;font-weight:700;letter-spacing:-.01em;white-space:nowrap;color:var(--fg);opacity:.55}
+.tab[aria-selected="true"] .t{opacity:1;color:var(--acc)}
+.tab[aria-selected="true"] .n{color:var(--acc)}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:0;right:1px;bottom:-1px;height:3px;background:var(--acc)}
+.tab:first-child[aria-selected="true"]::after{left:0}
+.tab:hover .t{opacity:1}
+.tab:focus-visible{outline:3px solid var(--acc);outline-offset:-3px}
+
+/* ---------- device ---------- */
+.device{margin:26px 0 0;border:1px solid var(--rule);background:var(--hair);padding:10px}
+.scaler{width:100%;overflow:hidden;line-height:0}
+.screen{width:1400px;height:759px;transform-origin:0 0;position:relative;overflow:hidden;user-select:none;
+  font-family:"Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;color:var(--w-txt);line-height:1.4}
+.deskbg{background-image:url("{{IMG:desktop}}");background-size:1400px 759px;background-repeat:no-repeat}
+/* the real taskbar, re-composited above the app windows */
+.tbar{position:absolute;left:0;bottom:0;width:1400px;height:36px;background-position:0 -723px;z-index:3}
+
+/* ---------- simulated Windows 11 windows ---------- */
+.win{position:absolute;background:#fff;border-radius:8px;overflow:hidden;z-index:2;display:none;
+  box-shadow:0 22px 48px -14px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.13)}
+.screen[data-win~="mail"] .mail,.screen[data-win~="dlg"] .dlg,
+.screen[data-win~="web"] .web,.screen[data-win~="pop"] .pop{display:block}
+.wt{height:30px;background:var(--w-bar);border-bottom:1px solid var(--w-line);display:flex;align-items:center;
+  padding-left:12px;font-size:11.5px;color:var(--w-sub);gap:8px}
+.wc{margin-left:auto;display:flex;height:30px}
+.wc i{width:38px;display:grid;place-items:center;font-style:normal;font-size:10px;color:#3C3C3C}
+.wc i:last-child{color:#8C1D18}
+
+.mail{left:56px;top:48px;width:774px;height:548px}
+.mbody{display:flex;height:calc(100% - 30px)}
+.mside{width:172px;background:#F6F8FA;border-right:1px solid var(--w-line);padding:11px 10px}
+.mnew{height:32px;border-radius:4px;background:var(--w-acc);color:#fff;font-size:12px;font-weight:600;
+  display:grid;place-items:center;margin-bottom:12px}
+.mfold{font-size:11.5px;padding:6px 8px;border-radius:3px;color:#333;display:flex;justify-content:space-between}
+.mfold.on{background:#DDE8F5;font-weight:600}
+.mmain{flex:1;background:#fff;display:flex;flex-direction:column;min-width:0}
+.mrow{display:flex;gap:10px;padding:10px 16px;border-bottom:1px solid #F0F0F0;font-size:11.5px}
+.mrow .av{width:26px;height:26px;border-radius:50%;background:#DCE6F2;flex:0 0 auto}
+.mrow b{display:block;color:#1A1A1A}.mrow span{color:var(--w-sub)}
+.chead{padding:12px 16px 4px;border-bottom:1px solid #EFEFEF}
+.fld{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:12px}
+.fld label{width:44px;color:var(--w-sub);font-size:11px}
+.fld .inp{flex:1;height:24px;border:1px solid #D8D8D8;border-radius:3px;padding:0 8px;display:flex;
+  align-items:center;font-size:11.5px;background:#fff}
+.fld .inp.e{color:#A9A9A9}
+.mtools{display:flex;gap:8px;padding:9px 16px;border-bottom:1px solid #EFEFEF}
+.mt{height:28px;padding:0 11px;border:1px solid #D8D8D8;border-radius:3px;font-size:11.5px;display:flex;
+  align-items:center;gap:6px;color:#2B2B2B;background:#fff}
+.mt.pri{background:var(--w-acc);border-color:var(--w-acc);color:#fff;font-weight:600}
+.mfile{display:none;align-items:center;gap:7px;background:#EEF4FA;border:1px solid #CFE0F0;border-radius:3px;
+  padding:5px 10px;font-size:11px;margin:10px 16px 0;color:#20456B;width:fit-content}
+.medit{flex:1;padding:14px 16px;font-size:12px;color:#3A3A3A}
+
+.dlg{left:296px;top:150px;width:624px;height:344px}
+.dbody{padding:18px 22px;height:calc(100% - 30px);background:#fff}
+.dbody h4{margin:0 0 9px;font-size:14px;font-weight:600;color:#1A1A1A}
+.tiny{font-size:9.5px;line-height:1.5;color:#555;margin:0}
+.dacts{position:absolute;right:18px;bottom:16px;display:flex;gap:8px}
+.dacts b{height:26px;padding:0 15px;border:1px solid #CFCFCF;border-radius:3px;font-size:11.5px;font-weight:400;
+  display:grid;place-items:center;background:#FDFDFD}
+.dacts b.pri{background:var(--w-acc);border-color:var(--w-acc);color:#fff}
+
+.web{left:56px;top:48px;width:880px;height:548px}
+.url{height:32px;background:#fff;border-bottom:1px solid var(--w-line);display:flex;align-items:center;
+  padding:0 12px;gap:9px;font-size:11px;color:#5F6368}
+.url .u{flex:1;height:22px;border-radius:11px;background:#F1F3F4;display:flex;align-items:center;padding:0 11px}
+.wbody{background:#fff;height:calc(100% - 62px);padding:26px 30px}
+.wbody h3{margin:0 0 10px;font-size:17px;color:#1A1A1A}
+.sk{height:9px;background:#EEE;border-radius:2px;margin:8px 0}
+.pop{left:880px;top:60px;width:470px;height:200px;box-shadow:0 22px 48px -12px rgba(0,0,0,.55),0 0 0 2px #B3261E}
+.pop .wt{background:#B3261E;color:#fff;font-weight:600}
+.pop .wc i{color:#fff}
+.pbody{background:#fff;padding:16px 20px;text-align:center;height:calc(100% - 30px)}
+.pbody .big{font-size:19px;font-weight:700;color:#B3261E;margin:2px 0 7px}
+.pbody p{font-size:11.5px;color:#333;margin:0 0 11px;line-height:1.45}
+.pbody .cta{display:inline-flex;height:32px;align-items:center;padding:0 20px;background:#B3261E;color:#fff;
+  border-radius:3px;font-size:13.5px;font-weight:700}
+.dl{position:absolute;left:900px;top:300px;width:330px;background:#fff;border-radius:6px;padding:10px 12px;
+  z-index:2;display:none;gap:9px;align-items:center;font-size:11.5px;
+  box-shadow:0 14px 32px -8px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.12)}
+.screen[data-win~="dl"] .dl{display:flex}
+.dl b{color:#1A1A1A;display:block}.dl span{color:var(--w-sub);font-size:10.5px}
+.dl .ic{width:24px;height:24px;flex:0 0 auto;background:#EDEFF2;border-radius:3px;display:grid;place-items:center}
+
+/* ================= SeniorAI overlay ================= */
+.ov{position:absolute;inset:0;z-index:4;pointer-events:none;
+  font-family:"Atkinson Hyperlegible",Verdana,sans-serif;color:var(--ink)}
+#scrim{position:absolute;inset:0}
+#cut{transition:x .4s cubic-bezier(.32,.8,.3,1),y .4s cubic-bezier(.32,.8,.3,1),
+  width .4s cubic-bezier(.32,.8,.3,1),height .4s cubic-bezier(.32,.8,.3,1)}
+.ring{position:absolute;border:5px solid var(--sig);box-shadow:0 0 0 3px #fff;display:none;
+  transition:all .4s cubic-bezier(.32,.8,.3,1)}
+.ring.stop{border-color:var(--stop)}.ring.act{border-style:dashed}
+@media (prefers-reduced-motion:reduce){#cut,.ring,.lens,.panel{transition:none}}
+
+/* panel — flat, hard-edged, no radius, no soft shadow */
+.panel{position:absolute;width:478px;background:var(--paper);border:3px solid var(--ink);
+  box-shadow:0 0 0 3px rgba(255,255,255,.9);display:none;transition:all .4s cubic-bezier(.32,.8,.3,1)}
+.band{background:var(--sig);color:var(--ink);height:42px;display:flex;align-items:center;padding:0 16px;gap:12px;
+  font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.15em;text-transform:uppercase;font-weight:600}
+.band .ct{margin-left:auto;letter-spacing:.08em;font-weight:500;opacity:.92}
+.panel.stop .band{background:var(--stop);color:#fff}
+.panel.act .band{background:var(--ink);color:var(--sig)}
+.pin{padding:20px 20px 18px}
+.panel h2{margin:0 0 10px;font-size:30px;line-height:1.14;font-weight:700;letter-spacing:-.015em;text-wrap:balance}
+.panel p{margin:0 0 16px;font-size:20px;line-height:1.44}
+.panel p mark{background:#FFE9A8;color:inherit;padding:0 3px}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.b{appearance:none;font-family:inherit;font-size:21px;font-weight:700;height:62px;padding:0 20px;
+  border:3px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;letter-spacing:-.01em}
+.b.pri{background:var(--sig);border-color:var(--ink);color:var(--ink)}
+.b.danger{background:var(--stop);border-color:var(--stop);color:#fff}
+.b.ok{background:var(--safe);border-color:var(--safe);color:#fff}
+.b.full{flex:1 1 100%}
+.b:hover{box-shadow:inset 0 0 0 3px #fff}
+.b:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+.foot:empty{display:none}
+.foot{margin-top:16px;padding-top:13px;border-top:2px solid var(--ink);font-size:16px;line-height:1.4;
+  display:flex;gap:9px;align-items:flex-start}
+.foot svg{flex:0 0 auto;margin-top:1px}
+.why{border:2px solid var(--ink);border-left-width:8px;border-left-color:var(--sig);padding:11px 14px;margin:0 0 16px}
+.why h6{margin:0 0 6px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;color:var(--sig-txt)}
+.why ul{margin:0;padding:0;list-style:none}
+.why li{font-size:17px;line-height:1.38;padding-left:16px;position:relative;margin:3px 0}
+.why li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;background:var(--ink)}
+
+/* voice bar — flat, full width, no pill */
+.voice{position:absolute;left:56px;right:56px;top:660px;height:56px;background:var(--ink);
+  box-shadow:0 0 0 3px rgba(255,255,255,.9);display:flex;align-items:center;gap:14px;padding:0 14px 0 0}
+.vmic{width:56px;height:56px;flex:0 0 auto;background:var(--sig);color:var(--ink);display:grid;place-items:center}
+.vmic.off{background:#3A3C41}
+.voice p{margin:0;color:#fff;font-size:19px;line-height:1.25;flex:1}
+.voice p em{font-style:normal;font-weight:700;color:#FFB182}
+.vkey{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#B9BDC4;border:1px solid #45484E;padding:5px 9px;flex:0 0 auto}
+
+/* level meter — five segments, flat */
+.meter{position:absolute;left:56px;top:612px;display:flex;align-items:center;gap:14px}
+.segs{display:flex;gap:4px;background:var(--paper);border:3px solid var(--ink);padding:5px;
+  box-shadow:0 0 0 3px rgba(255,255,255,.9)}
+.seg{width:44px;height:16px;background:#D6D8DC;position:relative}
+.seg.on{background:var(--sig)}
+.seg.done{background:#FFC49E}
+.mlabel{background:var(--ink);color:#fff;font-family:"IBM Plex Mono",monospace;font-size:13px;
+  letter-spacing:.13em;text-transform:uppercase;padding:8px 12px;box-shadow:0 0 0 3px rgba(255,255,255,.9)}
+.shield{display:flex;align-items:center;gap:8px;background:var(--safe);color:#fff;font-size:14px;font-weight:700;
+  padding:7px 12px;box-shadow:0 0 0 3px rgba(255,255,255,.9);font-family:"IBM Plex Mono",monospace;
+  letter-spacing:.1em;text-transform:uppercase}
+.shield.hot{background:var(--stop)}
+
+/* magnifier */
+.lens{position:absolute;width:392px;height:392px;border-radius:50%;overflow:hidden;display:none;
+  box-shadow:0 0 0 5px #fff,0 0 0 11px var(--sig);transition:all .45s cubic-bezier(.32,.8,.3,1)}
+.lens-in{position:absolute;left:0;top:0;width:1400px;height:759px;transform-origin:0 0}
+.ltag{position:absolute;left:50%;transform:translateX(-50%);bottom:0;background:var(--sig);color:var(--ink);
+  font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:600;padding:6px 16px}
+
+/* handover */
+.ghost{position:absolute;width:26px;height:26px;display:none;z-index:5;transition:all 1s cubic-bezier(.4,.1,.2,1)}
+.ghost::after{content:"";position:absolute;left:-13px;top:-13px;width:52px;height:52px;border:3px solid var(--sig)}
+.log{position:absolute;left:96px;top:296px;width:344px;background:var(--paper);border:3px solid var(--ink);
+  box-shadow:0 0 0 3px rgba(255,255,255,.9);display:none}
+.log .band{background:var(--ink);color:var(--sig)}
+.log ul{margin:0;padding:12px 14px;list-style:none}
+.log li{display:flex;gap:10px;font-size:16px;line-height:1.32;padding:5px 0;align-items:flex-start}
+.log li i{width:20px;height:20px;flex:0 0 auto;background:var(--safe);color:#fff;font-style:normal;font-size:12px;
+  font-weight:700;display:grid;place-items:center;margin-top:1px}
+.log li.now i{background:var(--sig);color:var(--ink)}.log li.wait i{background:#B8BCC2}
+.log .stopbar{margin:0 14px 14px;height:52px;background:var(--stop);color:#fff;font-size:19px;font-weight:700;
+  display:grid;place-items:center}
+
+/* ---------- notes below ---------- */
+.notes{display:grid;grid-template-columns:1.2fr 1fr;gap:44px;padding:40px 0 8px;align-items:start;
+  border-top:1px solid var(--rule);margin-top:30px}
+@media (max-width:920px){.notes{grid-template-columns:1fr;gap:28px}}
+.notes h3{font-size:1.55rem;font-weight:700;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance}
+.notes p{margin:0 0 14px;color:var(--mut);max-width:58ch;font-size:1rem}
+.notes strong{color:var(--fg)}
+.ev{display:flex;flex-direction:column}
+.ev div{padding:14px 0;border-top:1px solid var(--rule);font-size:.94rem;line-height:1.5;color:var(--mut)}
+.ev div:last-child{border-bottom:1px solid var(--rule)}
+.ev .lab{display:block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--acc);margin-bottom:5px;font-weight:600}
+.ev a{color:var(--fg);text-decoration-thickness:1px;text-underline-offset:3px}
+
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:0;margin-top:34px;
+  border-top:2px solid var(--fg)}
+.sp{padding:18px 20px 20px;border-right:1px solid var(--rule)}
+.sp:first-child{padding-left:0}.sp:last-child{border-right:0}
+.sp .v{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+.sp .l{font-size:.85rem;color:var(--mut);margin-top:5px;line-height:1.35}
+.sp .s{font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:var(--mut);opacity:.7;margin-top:7px;
+  letter-spacing:.05em}
+footer{border-top:1px solid var(--rule);margin-top:34px;padding:18px 0 48px;font-size:.82rem;color:var(--mut);
+  max-width:82ch}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="meta"><b>Makieta interaktywna</b><span>Wersja 0.1</span><span>Windows 11</span><span>PL</span>
+    <span style="margin-left:auto">Nakładka rysowana na prawdziwym zrzucie pulpitu</span></div>
+  <h1>Asystent, który pokazuje palcem.</h1>
+  <p class="lede">Nakładka nie zastępuje Windowsa — kładzie się na nim. Przyciemnia wszystko poza jednym miejscem,
+  obrysowuje je i mówi, co zrobić. Klika użytkownik. Wybierz scenariusz, żeby zobaczyć każdą warstwę.</p>
+</header>
+
+<div class="tabs" role="tablist" aria-label="Scenariusze">
+  <button class="tab" role="tab" data-sc="guide" aria-selected="true"><span class="n">01</span><span class="t">Prowadzenie</span></button>
+  <button class="tab" role="tab" data-sc="magnify" aria-selected="false"><span class="n">02</span><span class="t">Lupa i odczyt</span></button>
+  <button class="tab" role="tab" data-sc="shield" aria-selected="false"><span class="n">03</span><span class="t">Tarcza</span></button>
+  <button class="tab" role="tab" data-sc="handover" aria-selected="false"><span class="n">04</span><span class="t">Przejęcie kontroli</span></button>
+  <button class="tab" role="tab" data-sc="levels" aria-selected="false"><span class="n">05</span><span class="t">Poziomy asysty</span></button>
+</div>
+
+<div class="device"><div class="scaler" id="scaler">
+  <div class="screen deskbg" id="screen" data-win="mail">
+
+    <!-- ======= app windows ======= -->
+    <div class="win mail">
+      <div class="wt">Poczta — Halina Kowalska<div class="wc"><i>&#8211;</i><i>&#9633;</i><i>&#10005;</i></div></div>
+      <div class="mbody">
+        <div class="mside">
+          <div class="mnew" id="t-new">Nowa wiadomość</div>
+          <div class="mfold on"><span>Odebrane</span><span>3</span></div>
+          <div class="mfold"><span>Wysłane</span></div><div class="mfold"><span>Robocze</span></div>
+          <div class="mfold"><span>Kosz</span></div>
+        </div>
+        <div class="mmain">
+          <div id="inbox">
+            <div class="mrow"><div class="av"></div><div><b>Aleksandra Nowak</b><span>Babciu, przyślij to zdjęcie z ogrodu :)</span></div></div>
+            <div class="mrow"><div class="av"></div><div><b>Przychodnia Zdrowie</b><span>Przypomnienie o wizycie — 14 marca, 10:30</span></div></div>
+            <div class="mrow"><div class="av"></div><div><b>Bank Spółdzielczy</b><span>Wyciąg za luty jest gotowy</span></div></div>
+            <div class="mrow"><div class="av"></div><div><b>Biblioteka Miejska</b><span>Zapisy na spotkanie autorskie — 21 marca</span></div></div>
+            <div class="mrow"><div class="av"></div><div><b>Aleksandra Nowak</b><span>Re: zdjęcia z działki</span></div></div>
+            <div class="mrow"><div class="av"></div><div><b>Poczta Polska</b><span>Twoja przesyłka czeka w punkcie odbioru</span></div></div>
+          </div>
+          <div id="compose" style="display:none;flex:1;flex-direction:column;min-height:0">
+            <div class="chead">
+              <div class="fld"><label>Do</label><div class="inp e" id="t-to">wpisz adres…</div></div>
+              <div class="fld"><label>Temat</label><div class="inp e">bez tematu</div></div>
+            </div>
+            <div class="mtools">
+              <div class="mt" id="t-att">Załącz plik</div><div class="mt">Czcionka</div>
+              <div class="mt pri" id="t-send">Wyślij</div>
+            </div>
+            <div class="mfile" id="t-file">ogrod-maj.jpg — 2,4 MB</div>
+            <div class="medit">Napisz wiadomość…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="win dlg">
+      <div class="wt">Aktualizacja programu — warunki<div class="wc"><i>&#8211;</i><i>&#9633;</i><i>&#10005;</i></div></div>
+      <div class="dbody">
+        <h4>Zgoda na przetwarzanie danych</h4>
+        <p class="tiny" id="t-tiny">Wyrażam zgodę na przetwarzanie moich danych osobowych przez Administratora w celach
+        marketingowych, w tym na profilowanie, oraz na przekazywanie ich zaufanym partnerom handlowym wskazanym
+        w załączniku nr 3 do niniejszego regulaminu. Zgoda jest dobrowolna i może zostać wycofana w każdym czasie,
+        co nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem. Zaznaczenie pola poniżej
+        oznacza jednoczesną akceptację cennika usług dodatkowych obowiązującego od dnia publikacji aktualizacji.</p>
+        <p class="tiny" style="margin-top:10px">☐ Zaznacz, aby kontynuować instalację. Brak zaznaczenia przerwie aktualizację.</p>
+      </div>
+      <div class="dacts"><b>Anuluj</b><b class="pri">Kontynuuj</b></div>
+    </div>
+
+    <div class="win web">
+      <div class="wt">Przeglądarka<div class="wc"><i>&#8211;</i><i>&#9633;</i><i>&#10005;</i></div></div>
+      <div class="url"><span>&#8249; &#8250; &#8635;</span><div class="u">windows-security-alert-47.online/scan</div></div>
+      <div class="wbody">
+        <h3>Skanowanie systemu…</h3>
+        <div class="sk" style="width:76%"></div><div class="sk" style="width:62%"></div>
+        <div class="sk" style="width:70%"></div><div class="sk" style="width:38%"></div>
+      </div>
+    </div>
+    <div class="win pop">
+      <div class="wt">WINDOWS DEFENDER — ALERT<div class="wc"><i>&#10005;</i></div></div>
+      <div class="pbody">
+        <div class="big">TWÓJ KOMPUTER JEST ZARAŻONY</div>
+        <p>Wykryto 5 wirusów. Twoje hasła bankowe są zagrożone.<br>Zadzwoń natychmiast do wsparcia Microsoft:</p>
+        <div class="cta">800 190 447 — POMOC 24/7</div>
+      </div>
+    </div>
+    <div class="dl"><span class="ic">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg></span>
+      <div><b>AnyDesk-Setup.exe</b><span>Pobieranie zakończone — otwórz plik</span></div></div>
+
+    <div class="tbar deskbg"></div>
+
+    <!-- ======= overlay ======= -->
+    <div class="ov" id="ov">
+      <svg id="scrim" viewBox="0 0 1400 759" width="1400" height="759" aria-hidden="true">
+        <defs><mask id="m"><rect width="1400" height="759" fill="#fff"/>
+          <rect id="cut" x="0" y="0" width="0" height="0" fill="#000"/></mask></defs>
+        <rect id="fill" width="1400" height="759" fill="#05070A" opacity="0" mask="url(#m)"/>
+        <g id="leader" style="display:none">
+          <line id="lline" x1="0" y1="0" x2="0" y2="0" stroke="#fff" stroke-width="7"/>
+          <line id="lline2" x1="0" y1="0" x2="0" y2="0" stroke="#FF6A1F" stroke-width="3"/>
+          <circle id="ldot" r="6" fill="#FF6A1F" stroke="#0B0B0C" stroke-width="3"/>
+        </g>
+      </svg>
+      <div class="ring" id="ring"></div>
+
+      <div class="lens" id="lens"><div class="lens-in deskbg" id="lensIn"></div><div class="ltag">2,5&times;</div></div>
+
+      <div class="ghost" id="ghost">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 2l14 9-6.2 1.3L10 20 5 2z" fill="#FF6A1F" stroke="#0B0B0C" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="log" id="log">
+        <div class="band">Co teraz robię</div>
+        <ul>
+          <li><i>&#10003;</i>Otworzyłem nową wiadomość</li>
+          <li><i>&#10003;</i>Wpisałem adres: Ola</li>
+          <li class="now"><i>&#9656;</i>Dodaję zdjęcie z ogrodu</li>
+          <li class="wait"><i>4</i>Pokażę Ci wiadomość, zanim ją wyślę</li>
+        </ul>
+        <div class="stopbar">STOP — przerwij</div>
+      </div>
+
+      <div class="panel" id="panel">
+        <div class="band"><span id="pWho">SeniorAI</span><span class="ct" id="pStep">Krok 1 z 4</span></div>
+        <div class="pin">
+          <h2 id="pTitle">Kliknij Nowa wiadomość</h2>
+          <p id="pBody">Ten przycisk jest po lewej stronie, u góry. Otoczyłem go <mark>pomarańczową ramką</mark>.</p>
+          <div id="pWhy"></div>
+          <div class="acts" id="pActs"></div>
+          <div class="foot" id="pFoot"></div>
+        </div>
+      </div>
+
+      <div class="meter" id="meter">
+        <div class="segs" id="segs"><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+        <span class="mlabel" id="mlabel">Poziom 2 · Prowadzę</span>
+        <span class="shield" id="shield">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V6l8-3z"/></svg>
+          Tarcza włączona</span>
+      </div>
+
+      <div class="voice" id="voice">
+        <span class="vmic" id="vmic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0014 0M12 18v3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </span>
+        <p id="vTxt">Słucham. Powiedz <em>„dalej"</em>, <em>„powtórz"</em> albo <em>„nie rozumiem"</em>.</p>
+        <span class="vkey">Ctrl + spacja</span>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<section class="notes">
+  <div><h3 id="nT">Prowadzenie krok po kroku</h3><div id="nB"></div></div>
+  <div class="ev" id="nE"></div>
+</section>
+
+<section class="specs">
+  <div class="sp"><div class="v">62 px</div><div class="l">wysokość przycisku w nakładce — ponad 2,5× minimum</div><div class="s">WCAG 2.2 SC 2.5.8 · min. 24×24</div></div>
+  <div class="sp"><div class="v">19:1</div><div class="l">kontrast tekstu do tła panelu; nigdzie poniżej 7:1</div><div class="s">WCAG 2.2 SC 1.4.6 (AAA)</div></div>
+  <div class="sp"><div class="v">20 px</div><div class="l">tekst instrukcji; nagłówek 30 px, nic poniżej 16 px</div><div class="s">NIA / NLM senior-friendly</div></div>
+  <div class="sp"><div class="v">1</div><div class="l">podświetlony element naraz — nigdy dwie wskazówki</div><div class="s">zawężone pole widzenia (UFOV)</div></div>
+  <div class="sp"><div class="v">Atkinson<br>Hyperlegible</div><div class="l">krój zaprojektowany dla osób słabowidzących</div><div class="s">Braille Institute of America</div></div>
+</section>
+
+<footer>Pulpit w tle to prawdziwy zrzut ekranu Windows 11. Okna aplikacji, treści wiadomości i postać
+„Haliny" są fikcyjne, stworzone na potrzeby makiety — nie są zrzutem z działającego produktu ani
+komunikatem Microsoftu. Pełny research i porównanie rynkowe znajdują się w prezentacji projektu.</footer>
+</div>
+
+<script>
+(function(){
+  var scr=document.getElementById('screen'),sc=document.getElementById('scaler');
+  function fit(){var s=sc.clientWidth/1400;scr.style.transform='scale('+s+')';sc.style.height=(759*s)+'px';}
+  new ResizeObserver(fit).observe(sc);fit();
+
+  var lensIn=document.getElementById('lensIn');
+  lensIn.appendChild(document.querySelector('.win.dlg').cloneNode(true));
+  lensIn.querySelector('.win.dlg').style.display='block';
+
+  function rect(el){var r=el.getBoundingClientRect(),R=scr.getBoundingClientRect(),s=R.width/1400;
+    return{x:(r.left-R.left)/s,y:(r.top-R.top)/s,w:r.width/s,h:r.height/s};}
+
+  var E={ring:document.getElementById('ring'),cut:document.getElementById('cut'),fill:document.getElementById('fill'),
+    panel:document.getElementById('panel'),lens:document.getElementById('lens'),ghost:document.getElementById('ghost'),
+    log:document.getElementById('log'),voice:document.getElementById('voice'),meter:document.getElementById('meter'),
+    shield:document.getElementById('shield'),acts:document.getElementById('pActs'),vTxt:document.getElementById('vTxt'),
+    why:document.getElementById('pWhy'),foot:document.getElementById('pFoot'),lead:document.getElementById('leader'),
+    l1:document.getElementById('lline'),l2:document.getElementById('lline2'),dot:document.getElementById('ldot'),
+    mlabel:document.getElementById('mlabel'),segs:document.getElementById('segs')};
+
+  var SPEAK='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4zM17 9.5a4 4 0 010 5"/></svg>';
+  var CLOCK='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  var SH='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V6l8-3z"/></svg>';
+
+  var STEPS=[
+    {t:'t-new',h:'Kliknij Nowa wiadomość',
+     b:'Ten przycisk jest po lewej stronie, u góry. Otoczyłem go <mark>pomarańczową ramką</mark>.',
+     v:'Kliknij przycisk <em>Nowa wiadomość</em>. Jest po lewej stronie, w pomarańczowej ramce.'},
+    {t:'t-to',h:'Napisz, do kogo',
+     b:'W okienku <mark>Do</mark> napisz <mark>Ola</mark>. Resztę dopiszę sam. Nie musisz pamiętać adresu.',
+     v:'Napisz <em>Ola</em>. Resztę dopiszę sam.'},
+    {t:'t-att',h:'Dodaj zdjęcie',
+     b:'Kliknij <mark>Załącz plik</mark>. Zdjęcie z ogrodu już znalazłem.',
+     v:'Kliknij <em>Załącz plik</em>. Zdjęcie już czeka.'},
+    {t:'t-send',h:'Gotowe. Możesz wysłać.',
+     b:'Wiadomość do Oli ze zdjęciem jest gotowa. Kliknij <mark>Wyślij</mark>.',
+     v:'Gotowe. Kliknij <em>Wyślij</em>.'}];
+  var step=0;
+
+  function reset(){
+    ['ring','panel','lens','ghost','log'].forEach(function(k){E[k].style.display='none';});
+    E.fill.setAttribute('opacity','0');E.lead.style.display='none';
+    E.panel.className='panel';E.ring.className='ring';E.meter.style.display='flex';E.voice.style.display='flex';
+    E.foot.innerHTML='';
+    E.panel.style.width='478px';E.why.innerHTML='';E.shield.className='shield';
+    E.shield.lastChild.textContent=' Tarcza włączona';
+    document.getElementById('pWho').textContent='SeniorAI';
+  }
+  function level(n,name){
+    [].forEach.call(E.segs.children,function(el,i){el.className='seg'+(i===n?' on':(i<n?' done':''));});
+    E.mlabel.textContent='Poziom '+n+' · '+name;
+  }
+  function spot(el,pad,cls){
+    var r=rect(el);pad=pad||9;
+    E.cut.setAttribute('x',r.x-pad);E.cut.setAttribute('y',r.y-pad);
+    E.cut.setAttribute('width',r.w+pad*2);E.cut.setAttribute('height',r.h+pad*2);
+    E.fill.setAttribute('opacity','.62');
+    E.ring.style.display='block';E.ring.className='ring'+(cls?' '+cls:'');
+    E.ring.style.left=(r.x-pad)+'px';E.ring.style.top=(r.y-pad)+'px';
+    E.ring.style.width=(r.w+pad*2)+'px';E.ring.style.height=(r.h+pad*2)+'px';
+    return{x:r.x-pad,y:r.y-pad,w:r.w+pad*2,h:r.h+pad*2};
+  }
+  function fitPanel(){var h=E.panel.offsetHeight,t=parseFloat(E.panel.style.top)||52;
+    E.panel.style.top=Math.max(52,Math.min(t,640-h))+'px';}
+  function placePanel(r){ // right column, vertically near the target, leader line to the ring
+    var h=E.panel.offsetHeight||320,x=866,y=Math.min(Math.max(r.y-24,52),640-h);
+    E.panel.style.left=x+'px';E.panel.style.top=y+'px';
+    var ax=x-3, ay=y+34, bx=r.x+r.w+8, by=r.y+r.h/2;
+    [E.l1,E.l2].forEach(function(l){l.setAttribute('x1',ax);l.setAttribute('y1',ay);
+      l.setAttribute('x2',bx);l.setAttribute('y2',by);});
+    E.dot.setAttribute('cx',bx);E.dot.setAttribute('cy',by);E.lead.style.display='';
+  }
+
+  function guide(){
+    document.getElementById('inbox').style.display=step===0?'block':'none';
+    document.getElementById('compose').style.display=step===0?'none':'flex';
+    var to=document.getElementById('t-to');
+    if(step>=2){to.textContent='Aleksandra Nowak <ola.nowak@example.com>';to.classList.remove('e');}
+    else{to.textContent='wpisz adres…';to.classList.add('e');}
+    document.getElementById('t-file').style.display=step>=3?'flex':'none';
+    var s=STEPS[step];
+    E.panel.style.display='block';
+    document.getElementById('pStep').textContent='Krok '+(step+1)+' z 4';
+    document.getElementById('pTitle').textContent=s.h;
+    document.getElementById('pBody').innerHTML=s.b;
+    E.vTxt.innerHTML=s.v;
+    E.acts.innerHTML='<button class="b pri full" id="bN">'+(step<3?'Zrobione, dalej':'Zacznij od nowa')+'</button>'+
+      '<button class="b">Powtórz</button><button class="b">Nie rozumiem</button>';
+    E.foot.innerHTML=SPEAK+'<span>Czytam Ci to na głos. Powiedz: powtórz, a przeczytam jeszcze raz.</span>';
+    document.getElementById('bN').onclick=function(){step=(step+1)%4;guide();};
+    requestAnimationFrame(function(){placePanel(spot(document.getElementById(s.t),9));});
+  }
+
+  var SC={
+    guide:function(){scr.dataset.win='mail';level(2,'Prowadzę');step=0;guide();},
+    magnify:function(){scr.dataset.win='dlg';level(1,'Podpowiadam');
+      var r=rect(document.getElementById('t-tiny')),Z=2.5,L=392;
+      var cx=r.x+r.w*0.30,cy=r.y+r.h*0.42;
+      E.lens.style.display='block';E.lens.style.left=(cx-L/2)+'px';E.lens.style.top=(cy-L/2)+'px';
+      lensIn.style.transform='translate('+(L/2-cx*Z)+'px,'+(L/2-cy*Z)+'px) scale('+Z+')';
+      E.panel.style.display='block';E.panel.style.left='866px';E.panel.style.top='150px';
+      document.getElementById('pWho').textContent='Czytam mały druk';
+      document.getElementById('pStep').textContent='2,5×';
+      document.getElementById('pTitle').textContent='Tu piszą, że oddasz swoje dane innym firmom.';
+      document.getElementById('pBody').innerHTML='<strong>Nie musisz się na to zgadzać.</strong> Program zainstaluje się tak samo.';
+      E.acts.innerHTML='<button class="b pri full">Przeczytaj mi wszystko</button><button class="b">Co to znaczy?</button>';
+      E.foot.innerHTML=SPEAK+'<span>Powiedz: co tu pisze. Przeczytam i wytłumaczę.</span>';
+      E.vTxt.innerHTML='Powiedz <em>„co tu pisze"</em>, a przeczytam i wytłumaczę.';
+      requestAnimationFrame(fitPanel);},
+    shield:function(){scr.dataset.win='web pop dl';level(1,'Podpowiadam');
+      E.fill.setAttribute('opacity','.7');
+      spot(document.querySelector('.win.pop'),7,'stop');
+      E.meter.style.display='none';
+      E.panel.className='panel stop';E.panel.style.display='block';E.panel.style.width='690px';
+      E.panel.style.left='56px';E.panel.style.top='264px';
+      document.getElementById('pWho').textContent='Tarcza';
+      document.getElementById('pStep').textContent='Zatrzymałem to';
+      document.getElementById('pTitle').textContent='To nie jest Microsoft. To oszuści.';
+      document.getElementById('pBody').innerHTML='Ta strona tylko udaje ostrzeżenie z komputera. <strong>Microsoft nigdy nie dzwoni</strong> i nie prosi o dostęp do komputera.';
+      E.foot.innerHTML='';
+      E.why.innerHTML='<div class="why" style="border-left-color:var(--stop)"><h6 style="color:var(--stop)">Dlaczego to zatrzymałem</h6><ul>'+
+        '<li>Ten adres nie należy do Microsoftu.</li>'+
+        '<li>Pobrał się program, który daje obcym władzę nad komputerem.</li>'+
+        '<li>To ostrzeżenie pokazuje strona w internecie, a nie Twój komputer.</li>'+
+        '<li>Jeśli uważasz, że to pomyłka — możesz iść dalej.</li></ul></div>';
+      E.acts.innerHTML='<button class="b ok">Zamknij to okno</button><button class="b">Zadzwoń do córki</button><button class="b">Powiedz więcej</button>';
+      E.vTxt.innerHTML='<em>Zatrzymaj się.</em> To nie jest wiadomość od Microsoftu. Nie dzwoń pod ten numer.';
+      requestAnimationFrame(fitPanel);},
+    handover:function(){scr.dataset.win='mail';level(4,'Robię za Ciebie');
+      document.getElementById('inbox').style.display='none';
+      document.getElementById('compose').style.display='flex';
+      var to=document.getElementById('t-to');to.textContent='Aleksandra Nowak <ola.nowak@example.com>';to.classList.remove('e');
+      document.getElementById('t-file').style.display='flex';
+      E.log.style.display='block';E.ghost.style.display='block';
+      var r=spot(document.getElementById('t-att'),9,'act');
+      E.fill.setAttribute('opacity','.42');
+      E.ghost.style.left=(r.x+r.w*0.55)+'px';E.ghost.style.top=(r.y+r.h*0.6)+'px';
+      E.panel.className='panel act';E.panel.style.display='block';
+      E.panel.style.left='866px';E.panel.style.top='210px';
+      document.getElementById('pWho').textContent='Robię to za Ciebie';
+      document.getElementById('pStep').textContent='3 z 4';
+      document.getElementById('pTitle').textContent='Pokazuję Ci każdy ruch.';
+      document.getElementById('pBody').innerHTML='<strong>Nic nie wyślę</strong>, dopóki nie powiesz „tak". Możesz mnie zatrzymać w każdej chwili.';
+      E.acts.innerHTML='<button class="b danger full">Zatrzymaj</button><button class="b">Wolniej</button><button class="b">Co robisz?</button>';
+      E.foot.innerHTML=CLOCK+'<span>Czekam trzy sekundy przed każdym kliknięciem. Zdążysz mnie zatrzymać.</span>';
+      E.vTxt.innerHTML='Dołączam zdjęcie. Powiedz <em>„stop"</em>, żeby mnie zatrzymać.';
+      requestAnimationFrame(fitPanel);},
+    levels:function(){scr.dataset.win='mail';level(2,'Prowadzę');
+      E.fill.setAttribute('opacity','.66');
+      E.panel.style.display='block';E.panel.style.width='680px';
+      E.panel.style.left='360px';E.panel.style.top='120px';
+      document.getElementById('pWho').textContent='Poziom pomocy';
+      document.getElementById('pStep').textContent='0 → 4';
+      document.getElementById('pTitle').textContent='Ty decydujesz, ile mam robić.';
+      document.getElementById('pBody').innerHTML='Możesz mnie ustawić głosem albo jednym kliknięciem. Córka też może to zrobić ze swojego telefonu. <strong>Na początku jestem cicho.</strong>';
+      E.why.innerHTML='<div class="why" style="border-left-color:var(--safe)"><h6 style="color:var(--safe)">Tarcza pilnuje zawsze</h6><ul>'+
+        '<li>Pilnuje zawsze, nawet kiedy jestem cicho.</li>'+
+        '<li>Tylko ona włącza się sama. O resztę musisz mnie poprosić.</li></ul></div>';
+      E.acts.innerHTML='<button class="b" style="font-size:18px;height:56px;padding:0 14px">0 · Cicho</button>'+
+        '<button class="b" style="font-size:18px;height:56px;padding:0 14px">1 · Podpowiadaj</button>'+
+        '<button class="b pri" style="font-size:18px;height:56px;padding:0 14px">2 · Prowadź</button>'+
+        '<button class="b" style="font-size:18px;height:56px;padding:0 14px">3 · Klikaj ze mną</button>'+
+        '<button class="b" style="font-size:18px;height:56px;padding:0 14px">4 · Zrób za mnie</button>';
+      E.foot.innerHTML=SPEAK+'<span>Powiedz: pomóż mi — a się odezwę. Powiedz: cicho — a zniknę.</span>';
+      E.vTxt.innerHTML='Powiedz <em>„pomóż mi"</em>, żeby mnie obudzić, albo <em>„cicho"</em>, żebym zniknął.'
+      requestAnimationFrame(fitPanel);;}
+  };
+
+  var N={
+    guide:{h:'Prowadzenie krok po kroku',
+      b:'<p>Ekran gaśnie poza jednym miejscem. Pomarańczowa ramka na celu, linia prowadząca od panelu do niego, jedno zdanie, jedno kliknięcie.</p><p><strong>Klika użytkownik.</strong> Aplikacja pod spodem to prawdziwa poczta, nie nasza atrapa — dzięki temu następnym razem Halina zrobi to sama.</p><p><strong>Spróbuj:</strong> kliknij „Zrobione, dalej" — reflektor przeskakuje, a okno pod spodem zmienia stan.</p>',
+      e:[['Dlaczego pomarańczowy, a nie niebieski','Niebieski należy do Windowsa — używa go pulpit, pasek zadań i każde okno systemowe. Nakładka musi być <strong>nie do pomylenia z systemem</strong>: oszust potrafi podrobić niebieskie okno Windows, ale nie podrobi konsekwentnej pomarańczowej ramki, którą użytkownik zna z każdego dnia. To decyzja bezpieczeństwa, nie estetyczna.'],
+         ['Kontrast na pomarańczu','Pomarańcz nosi czarny tekst, nie biały — 7,2:1 zamiast 2,9:1. Biały tekst na jaskrawym pomarańczu nie spełnia nawet poziomu AA, mimo że tak robi większość interfejsów.'],
+         ['Zasada sygnalizacji','Wyróżnienie jednego elementu i wygaszenie reszty obniża obciążenie poznawcze — teoria uczenia multimedialnego Mayera i teoria obciążenia poznawczego Swellera.'],
+         ['Efekt podzielonej uwagi','Opis przy obiekcie, a nie w osobnym panelu, eliminuje łączenie dwóch źródeł informacji w pamięci roboczej. Linia prowadząca robi to wprost, gdy panel musi stać z boku.'],
+         ['WCAG 2.2 — 2.4.11 Focus Not Obscured','Panel przelicza pozycję przy każdym kroku, żeby nigdy nie przykryć podświetlonego elementu.','https://www.w3.org/TR/WCAG22/#focus-not-obscured-minimum']]},
+    magnify:{h:'Lupa, która też tłumaczy',
+      b:'<p>Powiększenie pokazuje litery. Panel obok mówi, co one znaczą — jednym zdaniem, zwykłym językiem, i wprost nazywa, czego dotyczy zgoda.</p><p>Drobny druk w oknach zgód niesie decyzje o skutkach finansowych. To jest miejsce, w którym senior traci pieniądze, nie rozumiejąc, na co klika.</p>',
+      e:[['Magnification API','Powiększenie realizuje systemowe API lupy, nie skalowanie zrzutu — obraz zostaje ostry.','https://learn.microsoft.com/en-us/windows/win32/api/magnification/'],
+         ['Utrata kontekstu przy zoomie','Powiększenie zawęża pole widzenia. Lupa jest punktowa i ograniczona do 2–3×, z widocznym otoczeniem, zamiast pełnoekranowego zoomu bez punktu odniesienia.'],
+         ['Prosty język','Streszczenie prawniczego akapitu do jednego zdania przenosi ciężar z czytania na rozumienie — kluczowe przy spadku szybkości przetwarzania informacji.']]},
+    shield:{h:'Tarcza — jedyna rzecz, która włącza się sama',
+      b:'<p>Asystent, który tylko doradza, jest bezużyteczny dokładnie wtedy, gdy oszust przez telefon mówi „proszę kliknąć tutaj". Tarcza przerywa, nazywa rzecz po imieniu i daje dwa wyjścia.</p><p>Alarmem jest <strong>zbieg zdarzeń</strong>, nie jedna reguła: strona podszywająca się pod system, pobrany program do zdalnego sterowania i wyświetlony numer telefonu. Każdy sygnał osobno bywa niegroźny.</p><p>Uczciwie: to jedyne miejsce, gdzie produkt odbiera decyzję. Blokada zawsze podaje trzy powody i zawsze da się ją przejść.</p>',
+      e:[['Trzy kolory, trzy znaczenia','Pomarańczowy — Twoja kolej. Czarny — teraz działa asystent. Czerwony — stop. Zielony potwierdza, że jest bezpiecznie. Podział wzorowany na barwach bezpieczeństwa ISO 3864, które użytkownik zna z otoczenia fizycznego od dziesięcioleci.'],
+         ['Prosty język jako wymóg, nie styl','Każde zdanie w interfejsie jest krótkie, w stronie czynnej i bez słów z branży: „program, który daje obcej osobie władzę nad Twoim komputerem" zamiast „narzędzie zdalnego dostępu". Komunikat, którego użytkownik nie rozumie, nie chroni go.'],
+         ['Zdalny dostęp jako wektor ataku','Uruchomienie narzędzia typu AnyDesk w zbiegu z innymi sygnałami jest traktowane jako alarm — to standardowy element oszustw na „wsparcie techniczne".'],
+         ['Wyjaśnienie zamiast zakazu','Blokada bez uzasadnienia uczy nieufności do narzędzia, nie do oszusta.']]},
+    handover:{h:'Przejęcie kontroli — z widocznymi rękami',
+      b:'<p>To moment największego ryzyka dla zaufania, bo z zewnątrz wygląda jak schemat oszustwa. Dlatego nic nie dzieje się w tle: widoczny kursor, odliczanie, dziennik kroków, zatrzymanie przed każdą akcją nieodwracalną.</p><p>Kliknięcia realizujemy wzorcami UI Automation, nie symulacją ruchu myszy. Istnieje twarda granica: nakładka <strong>nie zadziała</strong> na oknie kontroli konta użytkownika — Windows rysuje je na osobnym, chronionym pulpicie.</p>',
+      e:[['UI Automation zamiast myszy','Invoke wykonuje akcję niezależnie od pozycji kursora i jest widoczne dla technologii asystujących.','https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview'],
+         ['Granica: bezpieczny pulpit UAC','Żaden proces nie może tam rysować ani klikać, niezależnie od podpisu i uprawnień. To ograniczenie systemu, nie implementacji.','https://learn.microsoft.com/en-us/windows/win32/winauto/uiauto-securityoverview'],
+         ['Poczucie sprawczości','Automatyzacja bez widocznego działania buduje zależność zamiast kompetencji. Kursor, dziennik i STOP zamieniają „komputer robi coś sam" w „widzę, co robi, i mogę przerwać".']]},
+    levels:{h:'Wielopoziomowość jest produktem',
+      b:'<p>Ten sam człowiek potrzebuje różnej pomocy w poniedziałek i w środę. Kompetencja cyfrowa rośnie z wprawą i spada po chorobie — dlatego asystent ma <strong>pięć poziomów obecności, od zera</strong>, i domyślnie jest cicho.</p><p>Poziom zmienia użytkownik: głosem, jednym przyciskiem albo zdalnie przez opiekuna w aplikacji na telefonie. To ostatnie jest istotne — komputer seniora konfiguruje zwykle rodzina.</p>',
+      e:[['Model akceptacji technologii przez seniorów','Poczucie kontroli i własnej skuteczności to jedne z najsilniejszych predyktorów przyjęcia technologii przez osoby starsze.'],
+         ['Ryzyko wyuczonej bezradności','Asystent, który wszystko robi za użytkownika, obniża kompetencje, które miał budować. Poziomy 1–2 są domyślne właśnie dlatego.'],
+         ['Konfiguracja przez opiekuna','Wsparcie techniczne dla seniora świadczy najczęściej rodzina. Zdalne ustawienie poziomu przenosi ten wysiłek do aplikacji zamiast do wizyty.']]}};
+
+  function notes(k){var n=N[k];document.getElementById('nT').textContent=n.h;
+    document.getElementById('nB').innerHTML=n.b;
+    document.getElementById('nE').innerHTML=n.e.map(function(x){
+      return '<div><span class="lab">'+x[0]+'</span>'+(x[2]?'<a href="'+x[2]+'" target="_blank" rel="noopener">'+x[1]+'</a>':x[1])+'</div>';}).join('');}
+
+  function go(k){reset();SC[k]();notes(k);
+    [].forEach.call(document.querySelectorAll('.tab'),function(t){
+      t.setAttribute('aria-selected',t.dataset.sc===k?'true':'false');});}
+  [].forEach.call(document.querySelectorAll('.tab'),function(t){
+    t.addEventListener('click',function(){go(t.dataset.sc);});});
+  go('guide');
+})();
+</script>

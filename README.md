@@ -57,13 +57,31 @@ warstwa przerywająca oszustwa, jedyny element, który uruchamia się bez pytani
   wewnętrznie sprzeczna, zastąpiona zweryfikowaną wartością 38,5 tys. USD z raportu IC3 2025).
 - Sekcje „Krytyka danych" i „Twarde ograniczenia" w dossier wskazują, czego **nie** wolno cytować.
 
-## Budowanie prezentacji
+## Budowanie
 
 ```bash
+python3 mockup/build.py   # src/index.html + zrzut pulpitu → mockup/index.html
 python3 deck/build.py     # src/shell.html + src/slides.html + assets/*.jpg → deck/index.html
 ```
 
-Zrzuty w `deck/assets/` pochodzą z makiety — po jej zmianie należy je odtworzyć i przebudować deck.
+Oba skrypty wstawiają obrazy jako data URI, więc publikowane pliki są samowystarczalne.
+Makieta rysuje nakładkę na `Windows_11_Desktop_bee0wa.webp` — prawdziwym zrzucie pulpitu Windows 11.
+Zrzuty w `deck/assets/` pochodzą z makiety: po jej zmianie trzeba je odtworzyć i przebudować prezentację.
+
+## System wizualny nakładki
+
+| Rola | Kolor | Tekst na nim |
+|---|---|---|
+| Twoja kolej — podświetlenie, główne działanie | pomarańczowy `#FF6A1F` | czarny (7,2:1) |
+| Teraz działa asystent | czarny `#0B0B0C` | pomarańczowy |
+| Stop, zagrożenie | czerwony `#B3261E` | biały |
+| Bezpiecznie, zrobione | zielony `#0B6B3A` | biały |
+
+**Niebieskiego nie używamy w ogóle** — z trzech niezależnych powodów: żółknąca soczewka pochłania fale
+krótkie, więc niebieski jest najgorszym kolorem sygnałowym dla tej grupy wiekowej; niebieski należy do
+Windowsa, a oszust potrafi podrobić niebieskie okno systemu; i wreszcie pomarańcz maksymalnie odcina się
+od niebieskiej tapety oraz akcentów systemu. Krój pisma nakładki to Atkinson Hyperlegible (Braille
+Institute), a każde zdanie w interfejsie jest krótkie, w stronie czynnej i bez słownictwa branżowego.
 
 ## Zastrzeżenie
 
