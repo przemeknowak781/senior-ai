@@ -8,7 +8,9 @@
   --bg:#FCFCFD; --fg:#0B0B0C; --mut:#5A5D63; --rule:#DEDFE2; --hair:#EDEEF0;
   --acc:#B34700; --acc-lo:#FDF1E9;
   /* product signal roles — ISO 3864, fixed in both themes (the overlay is depicted, not themed) */
-  --sig:#FF6A1F; --sig-txt:#B34700; --stop:#B3261E; --safe:#0B6B3A; --ink:#0B0B0C; --paper:#FFFFFF;
+  --sig:#FF6A1F; --sig-deep:#E2560B; --sig-tint:#FFEFE4; --sig-txt:#B34700;
+  --stop:#C0271A; --safe:#0E6B3E; --ink:#101317; --ink-2:#4A525C; --line:#DDE1E6;
+  --surface:#FFFFFF; --dark:#171A1F; --on-sig:#0B0B0C;
   /* simulated Windows chrome — fixed */
   --w-bar:#F3F3F3; --w-line:#E3E3E3; --w-txt:#1A1A1A; --w-sub:#5E5E5E; --w-acc:#0067C0;
 }
@@ -142,92 +144,144 @@ h1{font-size:clamp(2rem,4.4vw,3rem);font-weight:700;letter-spacing:-.022em;line-
 .dl .ic{width:24px;height:24px;flex:0 0 auto;background:#EDEFF2;border-radius:3px;display:grid;place-items:center}
 
 /* ================= SeniorAI overlay ================= */
+/* Hierarchia przez ciężar: prowadzenie jest lekkie, działanie asystenta ciemne,
+   alarm czerwony. Ramy zastąpione elewacją — jeden ciężki element na ekranie, nie dziesięć. */
 .ov{position:absolute;inset:0;z-index:4;pointer-events:none;
   font-family:"Atkinson Hyperlegible",Verdana,sans-serif;color:var(--ink)}
 #scrim{position:absolute;inset:0}
-#cut{transition:x .4s cubic-bezier(.32,.8,.3,1),y .4s cubic-bezier(.32,.8,.3,1),
-  width .4s cubic-bezier(.32,.8,.3,1),height .4s cubic-bezier(.32,.8,.3,1)}
-.ring{position:absolute;border:5px solid var(--sig);box-shadow:0 0 0 3px #fff;display:none;
-  transition:all .4s cubic-bezier(.32,.8,.3,1)}
-.ring.stop{border-color:var(--stop)}.ring.act{border-style:dashed}
+#cut{transition:x .42s cubic-bezier(.32,.78,.28,1),y .42s cubic-bezier(.32,.78,.28,1),
+  width .42s cubic-bezier(.32,.78,.28,1),height .42s cubic-bezier(.32,.78,.28,1)}
+
+.ring{position:absolute;border:4px solid var(--sig);border-radius:10px;display:none;
+  box-shadow:0 0 0 2px rgba(255,255,255,.95),0 0 0 10px rgba(255,106,31,.22);
+  transition:all .42s cubic-bezier(.32,.78,.28,1)}
+.ring.stop{border-color:var(--stop);box-shadow:0 0 0 2px rgba(255,255,255,.95),0 0 0 10px rgba(192,39,26,.2)}
+.ring.act{border-style:dashed}
 @media (prefers-reduced-motion:reduce){#cut,.ring,.lens,.panel{transition:none}}
 
-/* panel — flat, hard-edged, no radius, no soft shadow */
-.panel{position:absolute;width:478px;background:var(--paper);border:3px solid var(--ink);
-  box-shadow:0 0 0 3px rgba(255,255,255,.9);display:none;transition:all .4s cubic-bezier(.32,.8,.3,1)}
-.band{background:var(--sig);color:var(--ink);height:42px;display:flex;align-items:center;padding:0 16px;gap:12px;
-  font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.15em;text-transform:uppercase;font-weight:600}
-.band .ct{margin-left:auto;letter-spacing:.08em;font-weight:500;opacity:.92}
-.panel.stop .band{background:var(--stop);color:#fff}
-.panel.act .band{background:var(--ink);color:var(--sig)}
-.pin{padding:20px 20px 18px}
-.panel h2{margin:0 0 10px;font-size:30px;line-height:1.14;font-weight:700;letter-spacing:-.015em;text-wrap:balance}
-.panel p{margin:0 0 16px;font-size:20px;line-height:1.44}
-.panel p mark{background:#FFE9A8;color:inherit;padding:0 3px}
+/* --- karta --- */
+.panel{position:absolute;width:478px;background:var(--surface);border-radius:18px;display:none;
+  transition:all .42s cubic-bezier(.32,.78,.28,1);overflow:hidden;
+  box-shadow:0 0 0 1px rgba(16,19,23,.07),0 2px 4px rgba(16,19,23,.10),
+    0 10px 20px -8px rgba(16,19,23,.20),0 28px 56px -16px rgba(16,19,23,.38)}
+.panel.stop{box-shadow:0 0 0 1px rgba(16,19,23,.07),0 3px 6px rgba(16,19,23,.14),
+    0 14px 28px -8px rgba(16,19,23,.28),0 38px 72px -18px rgba(16,19,23,.50)}
+
+/* nagłówek: lekki dla prowadzenia, pełnowymiarowy pas dla działania i alarmu */
+.band{display:flex;align-items:center;gap:12px;padding:18px 24px 13px;font-size:17px;font-weight:700;
+  letter-spacing:-.01em;position:relative}
+.band::after{content:"";position:absolute;left:24px;right:24px;bottom:0;height:1px;background:var(--line)}
+.band .ct{margin-left:auto;font-size:15px;font-weight:700;color:var(--ink-2);background:#F1F3F5;
+  border-radius:99px;padding:5px 13px;letter-spacing:0}
+.amark{width:30px;height:30px;border-radius:9px;background:var(--sig);color:var(--on-sig);flex:0 0 auto;
+  display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.panel.act .band,.panel.stop .band{padding:14px 22px;color:#fff}
+.panel.act .band::after,.panel.stop .band::after{display:none}
+.panel.act .band{background:var(--dark)}
+.panel.stop .band{background:var(--stop)}
+.panel.act .band .ct,.panel.stop .band .ct{background:rgba(255,255,255,.17);color:#fff}
+.panel.stop .amark{background:#fff;color:var(--stop)}
+
+.pin{padding:17px 24px 22px}
+.panel h2{margin:0 0 10px;font-size:31px;line-height:1.12;font-weight:700;letter-spacing:-.022em;text-wrap:balance}
+.panel p{margin:0 0 18px;font-size:20px;line-height:1.5}
+.panel p mark{background:#FFE0CB;color:inherit;padding:2px 6px;border-radius:5px;
+  box-shadow:inset 0 -3px 0 rgba(255,106,31,.85)}
+
+/* --- przyciski --- */
 .acts{display:flex;flex-wrap:wrap;gap:10px}
-.b{appearance:none;font-family:inherit;font-size:21px;font-weight:700;height:62px;padding:0 20px;
-  border:3px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;letter-spacing:-.01em}
-.b.pri{background:var(--sig);border-color:var(--ink);color:var(--ink)}
-.b.danger{background:var(--stop);border-color:var(--stop);color:#fff}
-.b.ok{background:var(--safe);border-color:var(--safe);color:#fff}
+.b{appearance:none;font-family:inherit;font-size:21px;font-weight:700;height:62px;padding:0 22px;
+  border:0;border-radius:13px;background:var(--surface);color:var(--ink);cursor:pointer;letter-spacing:-.012em;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  box-shadow:inset 0 0 0 2px var(--ink-2),0 1px 2px rgba(16,19,23,.07);transition:.14s ease}
+.b:hover{box-shadow:inset 0 0 0 2px var(--ink),0 2px 6px rgba(16,19,23,.14);transform:translateY(-1px)}
+.b.pri{background:var(--sig);color:var(--on-sig);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 1px 2px rgba(16,19,23,.18),0 5px 12px -3px rgba(255,106,31,.45)}
+.b.pri:hover{background:var(--sig-deep);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 2px 4px rgba(16,19,23,.2),0 8px 18px -4px rgba(255,106,31,.5)}
+.b.danger{background:var(--stop);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 1px 2px rgba(16,19,23,.18),0 5px 12px -3px rgba(192,39,26,.4)}
+.b.ok{background:var(--safe);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 1px 2px rgba(16,19,23,.18),0 5px 12px -3px rgba(14,107,62,.35)}
+.b.danger:hover,.b.ok:hover{filter:brightness(1.07)}
 .b.full{flex:1 1 100%}
-.b:hover{box-shadow:inset 0 0 0 3px #fff}
-.b:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+.acts.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.acts.grid5 .b{flex-direction:column;gap:1px;height:76px;font-size:16px;padding:0 6px;
+  line-height:1.16;text-align:center}
+.acts.grid5 .b b{font-size:20px;font-weight:700;color:var(--ink-2)}
+.acts.grid5 .b.pri b{color:var(--on-sig);opacity:.72}
+.b:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
 .foot:empty{display:none}
-.foot{margin-top:16px;padding-top:13px;border-top:2px solid var(--ink);font-size:16px;line-height:1.4;
-  display:flex;gap:9px;align-items:flex-start}
-.foot svg{flex:0 0 auto;margin-top:1px}
-.why{border:2px solid var(--ink);border-left-width:8px;border-left-color:var(--sig);padding:11px 14px;margin:0 0 16px}
-.why h6{margin:0 0 6px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;
-  text-transform:uppercase;font-weight:600;color:var(--sig-txt)}
+.foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:16px;line-height:1.45;
+  color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
+.foot svg{flex:0 0 auto;margin-top:2px;color:var(--ink-2)}
+
+/* --- uzasadnienie --- */
+.why{background:#F7F8FA;border-radius:12px;border-left:4px solid var(--sig);padding:14px 16px;margin:0 0 18px}
+.why h6{margin:0 0 7px;font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
 .why ul{margin:0;padding:0;list-style:none}
-.why li{font-size:17px;line-height:1.38;padding-left:16px;position:relative;margin:3px 0}
-.why li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;background:var(--ink)}
+.why li{font-size:17px;line-height:1.42;padding-left:18px;position:relative;margin:5px 0;color:var(--ink)}
+.why li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;
+  background:var(--sig)}
+.why.red{border-left-color:var(--stop);background:#FDF5F4}
+.why.red li::before{background:var(--stop)}
+.why.green{border-left-color:var(--safe);background:#F2F8F4}
+.why.green li::before{background:var(--safe)}
 
-/* voice bar — flat, full width, no pill */
-.voice{position:absolute;left:56px;right:56px;top:660px;height:56px;background:var(--ink);
-  box-shadow:0 0 0 3px rgba(255,255,255,.9);display:flex;align-items:center;gap:14px;padding:0 14px 0 0}
-.vmic{width:56px;height:56px;flex:0 0 auto;background:var(--sig);color:var(--ink);display:grid;place-items:center}
-.vmic.off{background:#3A3C41}
-.voice p{margin:0;color:#fff;font-size:19px;line-height:1.25;flex:1}
+/* --- pasek głosu --- */
+.voice{position:absolute;left:56px;right:56px;top:660px;height:60px;background:var(--dark);border-radius:30px;
+  display:flex;align-items:center;gap:15px;padding:0 18px 0 8px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.10),0 3px 8px rgba(16,19,23,.28),0 16px 32px -10px rgba(16,19,23,.5)}
+.vmic{width:44px;height:44px;flex:0 0 auto;background:var(--sig);color:var(--on-sig);border-radius:50%;
+  display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+.voice p{margin:0;color:#F2F4F7;font-size:19px;line-height:1.3;flex:1}
 .voice p em{font-style:normal;font-weight:700;color:#FFB182}
-.vkey{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#B9BDC4;border:1px solid #45484E;padding:5px 9px;flex:0 0 auto}
+.vkey{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#AEB5BE;background:rgba(255,255,255,.07);
+  border-radius:8px;padding:6px 10px;flex:0 0 auto}
 
-/* level meter — five segments, flat */
-.meter{position:absolute;left:56px;top:612px;display:flex;align-items:center;gap:14px}
-.segs{display:flex;gap:4px;background:var(--paper);border:3px solid var(--ink);padding:5px;
-  box-shadow:0 0 0 3px rgba(255,255,255,.9)}
-.seg{width:44px;height:16px;background:#D6D8DC;position:relative}
-.seg.on{background:var(--sig)}
+/* --- miernik poziomu: jeden obiekt, nie trzy --- */
+.meter{position:absolute;left:56px;top:606px;display:flex;align-items:center;gap:12px;height:46px;
+  background:var(--surface);border-radius:23px;padding:0 7px 0 14px;
+  box-shadow:0 0 0 1px rgba(16,19,23,.08),0 2px 4px rgba(16,19,23,.10),0 10px 22px -8px rgba(16,19,23,.3)}
+.segs{display:flex;gap:3px;align-items:center}
+.seg{width:26px;height:9px;border-radius:5px;background:#DFE3E8}
 .seg.done{background:#FFC49E}
-.mlabel{background:var(--ink);color:#fff;font-family:"IBM Plex Mono",monospace;font-size:13px;
-  letter-spacing:.13em;text-transform:uppercase;padding:8px 12px;box-shadow:0 0 0 3px rgba(255,255,255,.9)}
-.shield{display:flex;align-items:center;gap:8px;background:var(--safe);color:#fff;font-size:14px;font-weight:700;
-  padding:7px 12px;box-shadow:0 0 0 3px rgba(255,255,255,.9);font-family:"IBM Plex Mono",monospace;
-  letter-spacing:.1em;text-transform:uppercase}
+.seg.on{background:var(--sig);width:34px;box-shadow:0 1px 3px rgba(255,106,31,.5)}
+.mlabel{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+.shield{display:flex;align-items:center;gap:7px;background:var(--safe);color:#fff;font-size:14.5px;
+  font-weight:700;padding:8px 14px;border-radius:18px;white-space:nowrap;letter-spacing:-.005em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
 .shield.hot{background:var(--stop)}
 
-/* magnifier */
+/* --- lupa --- */
 .lens{position:absolute;width:392px;height:392px;border-radius:50%;overflow:hidden;display:none;
-  box-shadow:0 0 0 5px #fff,0 0 0 11px var(--sig);transition:all .45s cubic-bezier(.32,.8,.3,1)}
+  box-shadow:0 0 0 4px #fff,0 0 0 10px var(--sig),0 0 0 14px rgba(255,106,31,.22),
+    0 24px 48px -14px rgba(16,19,23,.55);transition:all .45s cubic-bezier(.32,.78,.28,1)}
 .lens-in{position:absolute;left:0;top:0;width:1400px;height:759px;transform-origin:0 0}
-.ltag{position:absolute;left:50%;transform:translateX(-50%);bottom:0;background:var(--sig);color:var(--ink);
-  font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:600;padding:6px 16px}
+.ltag{position:absolute;left:50%;transform:translateX(-50%);bottom:22px;background:var(--sig);
+  color:var(--on-sig);font-size:15px;font-weight:700;padding:7px 18px;border-radius:99px;
+  box-shadow:0 2px 8px rgba(16,19,23,.28)}
 
-/* handover */
+/* --- przejęcie kontroli --- */
 .ghost{position:absolute;width:26px;height:26px;display:none;z-index:5;transition:all 1s cubic-bezier(.4,.1,.2,1)}
-.ghost::after{content:"";position:absolute;left:-13px;top:-13px;width:52px;height:52px;border:3px solid var(--sig)}
-.log{position:absolute;left:96px;top:296px;width:344px;background:var(--paper);border:3px solid var(--ink);
-  box-shadow:0 0 0 3px rgba(255,255,255,.9);display:none}
-.log .band{background:var(--ink);color:var(--sig)}
-.log ul{margin:0;padding:12px 14px;list-style:none}
-.log li{display:flex;gap:10px;font-size:16px;line-height:1.32;padding:5px 0;align-items:flex-start}
-.log li i{width:20px;height:20px;flex:0 0 auto;background:var(--safe);color:#fff;font-style:normal;font-size:12px;
-  font-weight:700;display:grid;place-items:center;margin-top:1px}
-.log li.now i{background:var(--sig);color:var(--ink)}.log li.wait i{background:#B8BCC2}
-.log .stopbar{margin:0 14px 14px;height:52px;background:var(--stop);color:#fff;font-size:19px;font-weight:700;
-  display:grid;place-items:center}
+.ghost::after{content:"";position:absolute;left:-14px;top:-14px;width:54px;height:54px;border-radius:50%;
+  border:3px solid var(--sig);background:rgba(255,106,31,.12)}
+.log{position:absolute;left:96px;top:296px;width:344px;background:var(--surface);border-radius:18px;
+  display:none;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(16,19,23,.07),0 2px 4px rgba(16,19,23,.10),0 28px 56px -16px rgba(16,19,23,.38)}
+.log .band{background:var(--dark);color:#fff;padding:13px 20px;font-size:16px}
+.log .band::after{display:none}
+.log ul{margin:0;padding:14px 18px 6px;list-style:none}
+.log li{display:flex;gap:11px;font-size:16px;line-height:1.35;padding:6px 0;align-items:flex-start;color:var(--ink)}
+.log li i{width:21px;height:21px;border-radius:50%;flex:0 0 auto;background:var(--safe);color:#fff;
+  font-style:normal;font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.log li.now i{background:var(--sig);color:var(--on-sig)}
+.log li.wait{color:var(--ink-2)}
+.log li.wait i{background:#DFE3E8;color:var(--ink-2)}
+.log .stopbar{margin:10px 18px 18px;height:54px;background:var(--stop);color:#fff;font-size:19px;font-weight:700;
+  border-radius:13px;display:grid;place-items:center;letter-spacing:-.01em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 4px 10px -3px rgba(192,39,26,.4)}
 
 /* ---------- notes below ---------- */
 .notes{display:grid;grid-template-columns:1.2fr 1fr;gap:44px;padding:40px 0 8px;align-items:start;
@@ -385,7 +439,7 @@ footer{border-top:1px solid var(--rule);margin-top:34px;padding:18px 0 48px;font
       </div>
 
       <div class="panel" id="panel">
-        <div class="band"><span id="pWho">SeniorAI</span><span class="ct" id="pStep">Krok 1 z 4</span></div>
+        <div class="band"><span class="amark"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="7.6"/><circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none"/></svg></span><span id="pWho">SeniorAI</span><span class="ct" id="pStep">Krok 1 z 4</span></div>
         <div class="pin">
           <h2 id="pTitle">Kliknij Nowa wiadomość</h2>
           <p id="pBody">Ten przycisk jest po lewej stronie, u góry. Otoczyłem go <mark>pomarańczową ramką</mark>.</p>
@@ -422,7 +476,7 @@ footer{border-top:1px solid var(--rule);margin-top:34px;padding:18px 0 48px;font
 <section class="specs">
   <div class="sp"><div class="v">62 px</div><div class="l">wysokość przycisku w nakładce — ponad 2,5× minimum</div><div class="s">WCAG 2.2 SC 2.5.8 · min. 24×24</div></div>
   <div class="sp"><div class="v">19:1</div><div class="l">kontrast tekstu do tła panelu; nigdzie poniżej 7:1</div><div class="s">WCAG 2.2 SC 1.4.6 (AAA)</div></div>
-  <div class="sp"><div class="v">20 px</div><div class="l">tekst instrukcji; nagłówek 30 px, nic poniżej 16 px</div><div class="s">NIA / NLM senior-friendly</div></div>
+  <div class="sp"><div class="v">20 px</div><div class="l">tekst instrukcji; nagłówek 31 px, nic poniżej 16 px</div><div class="s">NIA / NLM senior-friendly</div></div>
   <div class="sp"><div class="v">1</div><div class="l">podświetlony element naraz — nigdy dwie wskazówki</div><div class="s">zawężone pole widzenia (UFOV)</div></div>
   <div class="sp"><div class="v">Atkinson<br>Hyperlegible</div><div class="l">krój zaprojektowany dla osób słabowidzących</div><div class="s">Braille Institute of America</div></div>
 </section>
@@ -477,7 +531,7 @@ komunikatem Microsoftu. Pełny research i porównanie rynkowe znajdują się w p
     E.fill.setAttribute('opacity','0');E.lead.style.display='none';
     E.panel.className='panel';E.ring.className='ring';E.meter.style.display='flex';E.voice.style.display='flex';
     E.foot.innerHTML='';
-    E.panel.style.width='478px';E.why.innerHTML='';E.shield.className='shield';
+    E.panel.style.width='478px';E.why.innerHTML='';E.shield.className='shield';E.acts.className='acts';
     E.shield.lastChild.textContent=' Tarcza włączona';
     document.getElementById('pWho').textContent='SeniorAI';
   }
@@ -553,7 +607,7 @@ komunikatem Microsoftu. Pełny research i porównanie rynkowe znajdują się w p
       document.getElementById('pTitle').textContent='To nie jest Microsoft. To oszuści.';
       document.getElementById('pBody').innerHTML='Ta strona tylko udaje ostrzeżenie z komputera. <strong>Microsoft nigdy nie dzwoni</strong> i nie prosi o dostęp do komputera.';
       E.foot.innerHTML='';
-      E.why.innerHTML='<div class="why" style="border-left-color:var(--stop)"><h6 style="color:var(--stop)">Dlaczego to zatrzymałem</h6><ul>'+
+      E.why.innerHTML='<div class="why red"><h6>Dlaczego to zatrzymałem</h6><ul>'+
         '<li>Ten adres nie należy do Microsoftu.</li>'+
         '<li>Pobrał się program, który daje obcym władzę nad komputerem.</li>'+
         '<li>To ostrzeżenie pokazuje strona w internecie, a nie Twój komputer.</li>'+
@@ -589,14 +643,15 @@ komunikatem Microsoftu. Pełny research i porównanie rynkowe znajdują się w p
       document.getElementById('pStep').textContent='0 → 4';
       document.getElementById('pTitle').textContent='Ty decydujesz, ile mam robić.';
       document.getElementById('pBody').innerHTML='Możesz mnie ustawić głosem albo jednym kliknięciem. Córka też może to zrobić ze swojego telefonu. <strong>Na początku jestem cicho.</strong>';
-      E.why.innerHTML='<div class="why" style="border-left-color:var(--safe)"><h6 style="color:var(--safe)">Tarcza pilnuje zawsze</h6><ul>'+
+      E.why.innerHTML='<div class="why green"><h6>Tarcza pilnuje zawsze</h6><ul>'+
         '<li>Pilnuje zawsze, nawet kiedy jestem cicho.</li>'+
         '<li>Tylko ona włącza się sama. O resztę musisz mnie poprosić.</li></ul></div>';
-      E.acts.innerHTML='<button class="b" style="font-size:18px;height:56px;padding:0 14px">0 · Cicho</button>'+
-        '<button class="b" style="font-size:18px;height:56px;padding:0 14px">1 · Podpowiadaj</button>'+
-        '<button class="b pri" style="font-size:18px;height:56px;padding:0 14px">2 · Prowadź</button>'+
-        '<button class="b" style="font-size:18px;height:56px;padding:0 14px">3 · Klikaj ze mną</button>'+
-        '<button class="b" style="font-size:18px;height:56px;padding:0 14px">4 · Zrób za mnie</button>';
+      E.acts.className='acts grid5';
+      E.acts.innerHTML='<button class="b"><b>0</b>Cicho</button>'+
+        '<button class="b"><b>1</b>Podpowiadaj</button>'+
+        '<button class="b pri"><b>2</b>Prowadź</button>'+
+        '<button class="b"><b>3</b>Klikaj ze mną</button>'+
+        '<button class="b"><b>4</b>Zrób za mnie</button>';
       E.foot.innerHTML=SPEAK+'<span>Powiedz: pomóż mi — a się odezwę. Powiedz: cicho — a zniknę.</span>';
       E.vTxt.innerHTML='Powiedz <em>„pomóż mi"</em>, żeby mnie obudzić, albo <em>„cicho"</em>, żebym zniknął.'
       requestAnimationFrame(fitPanel);;}

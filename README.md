@@ -77,6 +77,11 @@ Zrzuty w `deck/assets/` pochodzą z makiety: po jej zmianie trzeba je odtworzyć
 | Stop, zagrożenie | czerwony `#B3261E` | biały |
 | Bezpiecznie, zrobione | zielony `#0B6B3A` | biały |
 
+Ciężar wizualny niesie hierarchię: prowadzenie to lekka biała karta bez pasa nagłówka, działanie
+asystenta dostaje ciemny pas, alarm — czerwony i mocniejszy cień. Elementy oddziela elewacja, nie ramy;
+na ekranie jest jeden ciężki obiekt, nie dziesięć. Tekst na pomarańczu jest zawsze najciemniejszą
+czernią `#0B0B0C` (7,2:1) — biały dałby 2,9:1 i nie przeszedłby nawet AA.
+
 **Niebieskiego nie używamy w ogóle** — z trzech niezależnych powodów: żółknąca soczewka pochłania fale
 krótkie, więc niebieski jest najgorszym kolorem sygnałowym dla tej grupy wiekowej; niebieski należy do
 Windowsa, a oszust potrafi podrobić niebieskie okno systemu; i wreszcie pomarańcz maksymalnie odcina się
